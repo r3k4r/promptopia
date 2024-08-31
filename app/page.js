@@ -1,7 +1,12 @@
+import Nav from "./components/Nav";
+
 
 const page = () => {
   return (
-<section className='w-full flex-center flex-col'>
+    <>
+    <Nav />
+
+<section className='w-full flex justify-center items-center flex-col'>
     <h1 className='mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl text-center'>
       Discover & Share
       <br className='max-md:hidden' />
@@ -13,7 +18,10 @@ const page = () => {
     </p>
 
     {/* <Feed /> */}
-  </section>  )
+  </section> 
+  
+</>
+)
 }
 
 export default page
