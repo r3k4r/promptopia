@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { signUp } from "@/app/lib/action";
 import { useFormState, useFormStatus } from 'react-dom'
 import { useRouter } from 'next/navigation'
-import { getMessageFromCode } from "@/app/lib/action"
+import { getMessageFromCode } from "@/app/lib/errors"
 import { toast } from 'react-hot-toast';
 
 

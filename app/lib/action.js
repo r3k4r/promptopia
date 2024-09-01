@@ -4,7 +4,7 @@
 import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt'
-import { ResultCode } from "@/app/lib/action"; 
+import { ResultCode } from "@/app/lib/errors"; 
 
 
 const prisma = new PrismaClient();
