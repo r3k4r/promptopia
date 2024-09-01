@@ -13,17 +13,22 @@ import { toast } from 'react-hot-toast';
 
 const Form = () => {
   const [passwordShown, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
   const router = useRouter()
   const [result, dispatch] = useFormState(signUp, undefined)
   const { pending } = useFormStatus()
+  console.log(result)
 
 useEffect(() => {
     if (result) {
       if (result.type === 'error') {
-        toast.error(getMessageFromCode(result.resultCode))
+        const errorMessage = getMessageFromCode(result.resultCode);
+        setError(errorMessage);
+        toast.error(errorMessage);
       } else {
         toast.success(getMessageFromCode(result.resultCode))
-        router.refresh()
+        router.push('/auth/login');
+        setError('');
       }
     }
   }, [result, router])
@@ -50,6 +55,10 @@ useEffect(() => {
             )}
             </i>
         </div>
+
+        {error && (
+        <div className="text-red-500 text-sm">{error}</div>
+      )}
 
         <button aria-disabled={pending} type="submit" className="bg-primary-orange hover:bg-orange-600 text-white p-3 rounded-md font-bold">Sign Up</button>
 

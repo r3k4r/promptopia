@@ -8,6 +8,8 @@ import { ResultCode } from "@/app/lib/errors";
 
 
 const prisma = new PrismaClient();
+
+//for sign in
 export async function signIn(FormData){
     try{        
         const user = await prisma.user.findUnique({
@@ -19,6 +21,10 @@ export async function signIn(FormData){
         console.log(err)
     }
 }
+
+
+
+//for sign up
 export async function signUp(prevstate, formData){
 
     try{    
@@ -53,6 +59,7 @@ export async function signUp(prevstate, formData){
                 type: 'success',
                 resultCode: ResultCode.UserCreated,
             };
+           
         }else {
             return {
                 type: 'error',
@@ -66,9 +73,10 @@ export async function signUp(prevstate, formData){
             type: 'error',
             resultCode: ResultCode.UnknownError,
         };
-    }finally{
-        redirect('/auth/login')
-    }  
+    }
+    // finally{
+    //     redirect('/auth/login')
+    // }  
 
 }
 
