@@ -35,7 +35,7 @@ export async function signUp(prevstate, formData){
     if(existingUser){
         return{
             type:'error',
-            resultCode: 
+            resultCode: ResultCode.UserAlreadyExists, 
         }
     }
 
@@ -49,17 +49,26 @@ export async function signUp(prevstate, formData){
             }
         })
         if(user){
-            console.log("success")
-            
-        }else{
-            console.log("failed")
+            return {
+                type: 'success',
+                resultCode: ResultCode.UserCreated,
+            };
+        }else {
+            return {
+                type: 'error',
+                resultCode: ResultCode.UnknownError,
+            };
         }
         
-    }catch(err){
-        console.log(err)
-    }
-
-    redirect('/auth/login')
+    }catch (err) {
+        console.error(err);
+        return {
+            type: 'error',
+            resultCode: ResultCode.UnknownError,
+        };
+    }finally{
+        redirect('/auth/login')
+    }  
 
 }
 

@@ -7,13 +7,15 @@ import { useEffect, useState } from "react"
 import { signUp } from "@/app/lib/action";
 import { useFormState, useFormStatus } from 'react-dom'
 import { useRouter } from 'next/navigation'
-import { getMessageFromCode } from "@/app/lib/errors";
+import { getMessageFromCode } from "@/app/lib/action"
+import { toast } from 'react-hot-toast';
+
 
 const Form = () => {
-const [passwordShown, setShowPassword] = useState(false);
-const router = useRouter()
-const [result, dispatch] = useFormState(signUp, undefined)
-const { pending } = useFormStatus()
+  const [passwordShown, setShowPassword] = useState(false);
+  const router = useRouter()
+  const [result, dispatch] = useFormState(signUp, undefined)
+  const { pending } = useFormStatus()
 
 useEffect(() => {
     if (result) {
