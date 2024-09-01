@@ -2,7 +2,8 @@
 
 
 import { PrismaClient } from "@prisma/client";
-import { db } from "./db";
+import { redirect } from "next/navigation";
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient();
 export async function signIn(FormData){
@@ -16,29 +17,35 @@ export async function signIn(FormData){
         console.log(err)
     }
 }
-export async function signUp(formData){
-    console.log(formData)
-    const data={
-        name: formData.get('name'),
-        email:formData.get('email'),
-        password:formData.get('password'),
-    }
-    try{        
+export async function signUp(prevstate, formData){
+
+    try{    
+       const password= formData.get("password")
+       const name = formData.get("name")
+       const email = formData.get("email")
+
+       const hashedPassword =await bcrypt.hash(password, 12)
+
         const user = await prisma.user.create({
             data:{
-                name: data.name,
-                email: data.email,
-                password: data.password
+                name: name,
+                email: email,
+                password: hashedPassword
             }
         })
         if(user){
             console.log("success")
+            
         }else{
             console.log("failed")
         }
+        
     }catch(err){
         console.log(err)
     }
+
+    redirect('/auth/login')
+
 }
 
 
