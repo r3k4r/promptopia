@@ -1,7 +1,7 @@
 
-import Form from "./Form";
+import LoginForm from "./LoginForm";
 
-const LoginForm = () => {
+const Login = () => {
   return (
     <section className="w-full flex flex-col items-center justify-center">
         <div className={`w-[500px] h-fit p-5 bg-white rounded-lg flex flex-col items-center justify-center`}>
@@ -9,11 +9,11 @@ const LoginForm = () => {
           <p className="text-md pt-3 text-gray-400 font-semibold text-center">Enter your email and password to sign in</p>
 
           <div className={`flex flex-col items-center justify-center`}>
-            <Form />
+            <LoginForm />
           </div>
         </div>
     </section>
   )
 }
 
-export default LoginForm
+export default Login

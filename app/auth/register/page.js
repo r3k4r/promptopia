@@ -1,12 +1,13 @@
 
 
-import RegisterForm from "./RegisterForm"
-const Login = () => {
+import Register from "@/app/components/auth/Register"
+
+const page = () => {
   return (
     <section className="w-full flex items-center justify-center pt-[8%]">
-     <RegisterForm />
+     <Register />
     </section>
   )
 }
 
-export default Login
+export default page

@@ -11,7 +11,7 @@ import { getMessageFromCode } from "@/app/lib/errors"
 import { toast } from 'react-hot-toast';
 
 
-const Form = () => {
+const RegisterForm = () => {
   const [passwordShown, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter()
@@ -57,7 +57,7 @@ useEffect(() => {
         </div>
 
         {error && (
-        <div className="text-red-500 text-sm">{error}</div>
+        <p className="text-red-500 font-semibold text-sm">{error}</p>
       )}
 
         <button aria-disabled={pending} type="submit" className="bg-primary-orange hover:bg-orange-600 text-white p-3 rounded-md font-bold">Sign Up</button>
@@ -79,4 +79,4 @@ useEffect(() => {
   )
 }
 
-export default Form
+export default RegisterForm

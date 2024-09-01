@@ -2,10 +2,11 @@
 
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { useState } from "react"
-import Social from "../../components/Social";
+import Social from "../Social";
 import Link from "next/link";
 import {signIn} from '@/app/lib/action'
-const Form = () => {
+
+const LoginForm = () => {
     const [passwordShown, setShowPassword] = useState(false);
 
 
@@ -47,4 +48,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default LoginForm
