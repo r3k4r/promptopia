@@ -1,9 +1,9 @@
 
 const AuthLayout = ({children}) => {
   return (
-    <div className="w-full flex items-center justify-center">
+    <section className="w-full flex items-center justify-center pt-[20%]">
         {children}
-    </div>
+    </section>
   )
 }
 

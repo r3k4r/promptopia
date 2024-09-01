@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { LoginButton } from "@/app/components/ui/Buttons";
+import { LoginButton } from "@/app/Mycomponents/ui/Buttons";
 // import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
