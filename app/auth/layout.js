@@ -1,7 +1,7 @@
 
 const AuthLayout = ({children}) => {
   return (
-    <section className="w-full pt-[10%]">
+    <section className="w-full">
         {children}
     </section>
   )
