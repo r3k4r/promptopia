@@ -1,4 +1,4 @@
-import Nav from "./Mycomponents/Nav";
+import Nav from "./components/Nav";
 
 
 const page = () => {
