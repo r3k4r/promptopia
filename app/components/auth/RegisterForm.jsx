@@ -33,20 +33,20 @@ useEffect(() => {
   }, [result, router])
 
   return (
-    <form action={dispatch} className="flex flex-col space-y-5 mt-5 w-[370px] ">
+    <form action={dispatch} className="flex flex-col space-y-5 mt-5 w-full px-8 ">
         <div className="flex flex-col space-y-1">
             <label htmlFor="name" className="text-sm font-semibold">Name</label>
-            <input placeholder="e.g John, Redyar" required name="name" type="text" id="name" className="p-2 border border-gray-300 rounded-md" />
+            <input placeholder="e.g John, Redyar" required name="name" type="text" id="name" className="p-2 border border-gray-300 rounded-md w-full" />
         </div>
-        <div className="flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1 w-full">
             <label htmlFor="email" className="text-sm font-semibold">Email</label>
-            <input placeholder="example@gmail.com" required name="email" type="email" id="email" className="p-2 border border-gray-300 rounded-md" />
+            <input placeholder="example@gmail.com" required name="email" type="email" id="email" className="p-2 border border-gray-300 rounded-md w-full" />
         </div>
        
         <div className="flex flex-col space-y-1 w-full">
             <label htmlFor="password" className="text-sm font-semibold">Password</label>
-            <input placeholder="8 character Password" required name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md " />
-            <i className={`absolute ${error? "left-[405px] bottom-[319px]" : "left-[405px] bottom-[252px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
+            <input placeholder="8 character Password" required name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md w-full " />
+            <i className={`absolute ${error? "left-[310px] sm:left-[405px] bottom-[319px]" : "left-[310px] sm:left-[405px] bottom-[252px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
             {passwordShown ? (
                 <EyeIcon className="h-5 w-5" />
             ) : (
