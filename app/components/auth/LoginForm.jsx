@@ -20,7 +20,7 @@ const LoginForm = () => {
         <div className="flex flex-col space-y-1 w-full">
         <label htmlFor="password" className="text-sm font-semibold">Password</label>
         <input type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md " />
-        <i className="absolute left-[798px] bottom-[294px] text-gray-400 peer-focus:text-gray-900" onClick={() => setShowPassword(!passwordShown)}>
+        <i className="absolute left-[405px] bottom-[294px] text-gray-400 peer-focus:text-gray-900" onClick={() => setShowPassword(!passwordShown)}>
         {passwordShown ? (
             <EyeIcon className="h-5 w-5" />
         ) : (
