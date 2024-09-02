@@ -1,23 +1,12 @@
-"use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { LoginButton } from "@/app/components/ui/Buttons";
-// import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { LoginButton, SignOut } from "@/app/components/ui/Buttons";
+import { auth } from "@/auth"
 
-const Nav = () => {
-  // const { data: session } = useSession();
-
-  // const [providers, setProviders] = useState(null);
-  const [toggleDropdown, setToggleDropdown] = useState(false);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const res = await getProviders();
-  //     setProviders(res);
-  //   })();
-  // }, []);
+const Nav = async() => {
+  const session = await auth()
+ 
 
   return (
     <nav className='flex justify-between items-center w-full mb-16 pt-3'>
@@ -32,88 +21,19 @@ const Nav = () => {
         <p className='logo_text'>Promptopia</p>
       </Link>
 
-      {/* Desktop Navigation */}
       <div className='sm:flex hidden'>
-        {/* {session?.user ? ( */}
-          {/* <div className='flex gap-3 md:gap-5'>
-            <Link href='/create-prompt' className='black_btn'>
-              Create Post
-            </Link>
-
-            <button type='button' onClick={signOut} className='outline_btn'>
-              Sign Out
-            </button>
-
-            <Link href='/profile'>
-              <Image
-                src={session?.user.image}
-                width={37}
-                height={37}
-                className='rounded-full'
-                alt='profile'
-              />
-            </Link>
-          </div>
-        ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => ( */}
-              <LoginButton />
-              {/* ))} */}
-          {/* </>
-        )} */}
+       
+    
+              {session? <SignOut />: <LoginButton />}
+              
       </div>
 
-      {/* Mobile Navigation */}
+     
       <div className='sm:hidden flex relative'>
-        {/* {session?.user ? ( */}
-          {/* <div className='flex'>
-            <Image
-              src={session?.user.image}
-              width={37}
-              height={37}
-              className='rounded-full'
-              alt='profile'
-              onClick={() => setToggleDropdown(!toggleDropdown)}
-            />
-
-            {toggleDropdown && (
-              <div className='dropdown'>
-                <Link
-                  href='/profile'
-                  className='dropdown_link'
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  My Profile
-                </Link>
-                <Link
-                  href='/create-prompt'
-                  className='dropdown_link'
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  Create Prompt
-                </Link>
-                <button
-                  type='button'
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    signOut();
-                  }}
-                  className='mt-5 w-full black_btn'
-                >
-                  Sign Out
-                </button>
-              </div>
-            )}
-          </div>
-        ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => ( */}
-                <LoginButton />
-              {/* ))}
-          </>
-        )} */}
+        
+        
+      {session? <SignOut />: <LoginButton />}
+             
       </div>
     </nav>
   );

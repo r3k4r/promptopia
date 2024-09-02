@@ -36,13 +36,13 @@ const LoginForm = () => {
     <form action={dispatch} className="flex flex-col space-y-5 mt-5 w-[370px] ">
         <div className="flex flex-col space-y-1">
             <label htmlFor="email" className="text-sm font-semibold">Email</label>
-            <input name="email" type="email" id="email" className="p-2 border border-gray-300 rounded-md" />
+            <input required name="email" type="email" id="email" className="p-2 border border-gray-300 rounded-md" />
         </div>
 
         <div className="flex flex-col space-y-1 w-full">
         <label htmlFor="password" className="text-sm font-semibold">Password</label>
-        <input name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md " />
-        <i className="absolute left-[405px] bottom-[294px] text-gray-400 peer-focus:text-gray-900" onClick={() => setShowPassword(!passwordShown)}>
+        <input required name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md " />
+        <i className={`absolute ${error? "left-[405px] bottom-[363px]" : "left-[405px] bottom-[294px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
         {passwordShown ? (
             <EyeIcon className="h-5 w-5" />
         ) : (
@@ -52,7 +52,13 @@ const LoginForm = () => {
     </div>
 
     {error && (
-        <p className="text-red-500 font-semibold text-sm">{error}</p>
+        <div className="p-3 bg-red-200 rounded-md ">
+          <p className="text-red-600 font-semibold text-sm flex items-center justify-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+            {error}</p>
+        </div>
       )}
 
         <button type="submit" aria-disabled={pending} className="bg-primary-orange hover:bg-orange-600 text-white p-3 rounded-md font-bold">Login</button>

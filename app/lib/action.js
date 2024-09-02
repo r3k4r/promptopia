@@ -1,11 +1,12 @@
 'use server'
 
-
 import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 import bcrypt from 'bcryptjs'
 import { ResultCode } from "@/app/lib/errors"; 
 import {signIn} from '@/auth' 
+import { AuthError } from "next-auth";
+
 
 const prisma = new PrismaClient();
 
@@ -26,7 +27,21 @@ export async function login(prevstate, formData){
         }
      )
    }catch(err){
-        console.log(err)
+       if(err instanceof AuthError){
+        switch(err.type){
+            case "CredentialsSignin" : 
+            return {
+                type:'error',
+                resultCode: ResultCode.InvalidCredentials,
+            }
+            default: return {
+               type:'error',
+               resultCode: ResultCode.UnknownError,
+            }
+        }
+       
+       }
+       throw err
    }
 }
 
@@ -40,6 +55,8 @@ export async function signUp(prevstate, formData){
        const name = formData.get("name")
        const email = formData.get("email")
 
+       
+
        const existingUser = await prisma.user.findUnique({
         where: {
             email: email,
@@ -52,6 +69,7 @@ export async function signUp(prevstate, formData){
             resultCode: ResultCode.UserAlreadyExists, 
         }
     }
+    if(validateEmail(email) && validatePassword(password)){
 
        const hashedPassword =await bcrypt.hash(password, 12)
 
@@ -62,11 +80,13 @@ export async function signUp(prevstate, formData){
                 password: hashedPassword
             }
         })
+
         if(user){
             return {
                 type: 'success',
                 resultCode: ResultCode.UserCreated,
             };
+            
            
         }else {
             return {
@@ -74,6 +94,13 @@ export async function signUp(prevstate, formData){
                 resultCode: ResultCode.UnknownError,
             };
         }
+    }else if(!validateEmail(password)){
+        return {
+            type: 'error',
+            resultCode: ResultCode.InvalidPassword,
+        };
+    }
+
         
     }catch (err) {
         console.error(err);
@@ -91,3 +118,19 @@ export async function signUp(prevstate, formData){
 
 
  
+
+function validateEmail(email) {
+    // Email validation logic here
+    // You can use a regular expression or any other method to validate the email format
+    // Example regular expression for email validation:
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  function validatePassword(password) {
+    // Password validation logic here
+    // You can use a regular expression or any other method to validate the password format
+    // Example regular expression for password validation:
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  } 

@@ -4,7 +4,8 @@ export const ResultCode = {
   UserAlreadyExists: 'USER_ALREADY_EXISTS',
   UnknownError: 'UNKNOWN_ERROR',
   UserCreated: 'USER_CREATED',
-  UserLoggedIn: 'USER_LOGGED_IN'
+  UserLoggedIn: 'USER_LOGGED_IN',
+  InvalidPassword: 'INVALID_PASSWORD'
 };
 
 export const getMessageFromCode = (resultCode) => {
@@ -19,6 +20,8 @@ export const getMessageFromCode = (resultCode) => {
         return 'User created, welcome!'
       case ResultCode.UnknownError:
         return 'Something went wrong, please try again!'
+      case ResultCode.InvalidPassword:
+        return 'Use atleast one uppercase and one symbol!'
       case ResultCode.UserLoggedIn:
         return 'Logged in!'
     }
