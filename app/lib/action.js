@@ -10,10 +10,14 @@ import {signIn} from '@/auth'
 const prisma = new PrismaClient();
 
 //for sign in
-export async function login(formData){
-   const {email , password } = formData
+export async function login(prevstate, formData){
+
 
    try{
+
+    const email = formData.get("email")
+    const password = formData.get("password")
+    
      await signIn("credentials", 
         {
             email,
