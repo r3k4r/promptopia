@@ -5,21 +5,25 @@ import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt'
 import { ResultCode } from "@/app/lib/errors"; 
-
+import {signIn} from '@/auth' 
 
 const prisma = new PrismaClient();
 
 //for sign in
-export async function signIn(FormData){
-    try{        
-        const user = await prisma.user.findUnique({
-            where: {
-                email: FormData.email,
-            },
-        })
-    }catch(err){
+export async function login(formData){
+   const {email , password } = formData
+
+   try{
+     await signIn("credentials", 
+        {
+            email,
+            password,
+            redirectTo : "/",
+        }
+     )
+   }catch(err){
         console.log(err)
-    }
+   }
 }
 
 

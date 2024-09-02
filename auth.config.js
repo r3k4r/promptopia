@@ -9,18 +9,19 @@ export default {
     Credentials({
       async authorize(credentials){
         const { email, password } = credentials;
-        const validate = password >= 8 ;
         
-        if(validate){
+        if(validateEmail(email) && validatePassword(password)){
           const user = await getUserByEmail(email);
-          const passwordMatch = await bcrypt.compare(password, user.password);
-
+          
           if(!user || !user.password) return null;
 
+          const passwordMatch = await bcrypt.compare(password, user.password);
           if(passwordMatch){
             return user;
           }
         }
+
+        return null
         
       }
       

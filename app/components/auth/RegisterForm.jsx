@@ -17,7 +17,6 @@ const RegisterForm = () => {
   const router = useRouter()
   const [result, dispatch] = useFormState(signUp, undefined)
   const { pending } = useFormStatus()
-  console.log(result)
 
 useEffect(() => {
     if (result) {
