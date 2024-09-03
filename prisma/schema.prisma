@@ -14,13 +14,26 @@ datasource db {
 }
 
 model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password      String
+  emailVerified Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  prompts       Prompt[]
+  profile       Profile?
+}
+
+model Profile {
   id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
+  FirstName String
+  LastName  String
+  picture   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  props     Prompt[]
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
 }
 
 model Prompt {
@@ -29,6 +42,6 @@ model Prompt {
   tags      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  creator   User?    @relation(fields: [userId], references: [id])
+  creator   User     @relation(fields: [userId], references: [id])
   userId    String
 }
