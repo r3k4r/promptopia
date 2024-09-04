@@ -1,7 +1,6 @@
 'use server'
 
 import { PrismaClient } from "@prisma/client";
-import { redirect } from "next/navigation";
 import bcrypt from 'bcryptjs'
 import { ResultCode } from "@/app/lib/errors"; 
 import {signIn} from '@/auth' 

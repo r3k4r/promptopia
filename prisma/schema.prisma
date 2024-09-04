@@ -14,16 +14,17 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  name      String?
-  email     String    @unique
-  password  String?
-  image     String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  prompts   Prompt[]
-  profile   Profile?
-  accounts  Account[]
+  id            String    @id @default(uuid())
+  name          String?
+  email         String    @unique
+  password      String?
+  image         String?
+  emailVerified Boolean?  @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  prompts       Prompt[]
+  profile       Profile?
+  accounts      Account[]
 }
 
 model Account {
@@ -32,6 +33,12 @@ model Account {
   providerAccountId String
   userId            String
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  access_token      String?
+  id_token          String?
+  expires_at        Int?
+  scope             String?
+  token_type        String?
+  type              String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 

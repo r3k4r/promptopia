@@ -6,6 +6,10 @@ import { auth } from "@/auth"
 
 const Nav = async() => {
   const session = await auth()
+
+  console.log(session)
+
+
  
 
   return (
