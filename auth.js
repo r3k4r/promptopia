@@ -8,6 +8,20 @@ import { getUserById } from './data/user/index';
 const prisma = new PrismaClient();
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  pages :{
+    signIn : "auth/login",
+    error  : "auth/error",
+  },
+  events :{ 
+    async linkAccount({user}){
+      await prisma.user.update({
+        where : {id : user.id},
+        data :{
+          emailVerified : new Date()
+        }
+      })
+    }
+  },
   callbacks: {
     async session({ token, session }) {
       if (token.sub && session.user) {

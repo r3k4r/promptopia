@@ -2,12 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { LoginButton, SignOut } from "@/app/components/ui/Buttons";
-import { auth } from "@/auth"
+import { auth, handlers } from "@/auth"
 
 const Nav = async() => {
   const session = await auth()
 
   console.log(session)
+
+
 
 
  
