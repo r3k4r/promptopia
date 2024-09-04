@@ -11,7 +11,7 @@ const ErrorCard = () => {
             </svg>
             <br />
       <h1 className="text-3xl font-bold text-center">Oops! Something went wrong!</h1>
-      <p className="text-md pt-3 text-gray-400 font-semibold text-center">try using different credentials</p>
+      <p className="text-md pt-3 text-gray-400 font-semibold text-center">Email already in use with different provider</p>
         <br />
       <div className={`w-full flex flex-col items-center justify-center`}>
         <Link className={`red_btn`} href={'/auth/login'}>

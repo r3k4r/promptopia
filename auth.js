@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages :{
     signIn : "auth/login",
-    error  : "auth/error",
+    error : "auth/error",
   },
   events :{ 
     async linkAccount({user}){
