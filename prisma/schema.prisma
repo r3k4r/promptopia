@@ -14,34 +14,47 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(uuid())
-  name          String
-  email         String   @unique
-  password      String
-  emailVerified Boolean  @default(false)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  prompts       Prompt[]
-  profile       Profile?
+  id        String    @id @default(uuid())
+  name      String?
+  email     String    @unique
+  password  String?
+  image     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  prompts   Prompt[]
+  profile   Profile?
+  accounts  Account[]
+}
+
+model Account {
+  id                String   @id @default(cuid())
+  provider          String
+  providerAccountId String
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
 }
 
 model Profile {
   id        String   @id @default(uuid())
-  FirstName String
-  LastName  String
-  picture   String
+  firstName String?
+  lastName  String?
+  picture   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String   @unique
 }
 
 model Prompt {
   id        String   @id @default(uuid())
-  prompt    String
-  tags      String
+  prompt    String?
+  tags      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  creator   User     @relation(fields: [userId], references: [id])
   userId    String
+  creator   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
