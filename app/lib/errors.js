@@ -5,7 +5,8 @@ export const ResultCode = {
   UnknownError: 'UNKNOWN_ERROR',
   UserCreated: 'USER_CREATED',
   UserLoggedIn: 'USER_LOGGED_IN',
-  InvalidPassword: 'INVALID_PASSWORD'
+  InvalidPassword: 'INVALID_PASSWORD',
+  Verification : 'CONFIRMATION_EMAIL_SENT'
 };
 
 export const getMessageFromCode = (resultCode) => {
@@ -22,6 +23,8 @@ export const getMessageFromCode = (resultCode) => {
         return 'Something went wrong, please try again!'
       case ResultCode.InvalidPassword:
         return 'Use atleast one uppercase and one symbol!'
+      case ResultCode.Verification:
+        return 'Confirmation Email Sent...!'
       case ResultCode.UserLoggedIn:
         return 'Logged in!'
     }

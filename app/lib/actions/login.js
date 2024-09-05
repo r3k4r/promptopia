@@ -5,16 +5,36 @@ import { ResultCode } from "@/app/lib/errors";
 import {signIn} from '@/auth' 
 import { AuthError } from "next-auth";
 import { prisma } from '../db';
+import { generateVerificationToken } from './tokens';
+import { getUserByEmail } from '@/data/user';
 
 //for sign in
 export async function login(prevstate, formData){
 
-
-   try{
-
     const email = formData.get("email")
     const password = formData.get("password")
-    
+
+    const existingUser = await getUserByEmail(email)
+    const MatchPassword = await bcrypt.compare(password, existingUser.password)
+
+    if(!existingUser || !existingUser.email || !existingUser.password){
+        return {
+            type:'error',
+            resultCode: ResultCode.InvalidCredentials,
+        }
+    }
+    if(existingUser && MatchPassword && !existingUser.emailVerified){
+        //send verification code to email
+        const verificationToken = await generateVerificationToken(existingUser.email)
+
+        return {
+            type: 'verification',
+            resultCode: ResultCode.Verification,
+        }
+    } 
+
+   try{
+   
      await signIn("credentials", 
         {
             email,
