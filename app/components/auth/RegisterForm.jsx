@@ -4,7 +4,7 @@ import Social from "@/app/components/Social";
 import Link from "next/link";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react"
-import { signUp } from "@/app/lib/action";
+import { signUp } from "@/app/lib/actions/register";
 import { useFormState, useFormStatus } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { getMessageFromCode } from "@/app/lib/errors"

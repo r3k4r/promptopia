@@ -1,52 +1,11 @@
+
 'use server'
 
-import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcryptjs'
+import { prisma } from '../db';
 import { ResultCode } from "@/app/lib/errors"; 
-import {signIn} from '@/auth' 
-import { AuthError } from "next-auth";
 
 
-const prisma = new PrismaClient();
-
-//for sign in
-export async function login(prevstate, formData){
-
-
-   try{
-
-    const email = formData.get("email")
-    const password = formData.get("password")
-    
-     await signIn("credentials", 
-        {
-            email,
-            password,
-            redirectTo : "/",
-        }
-     )
-   }catch(err){
-       if(err instanceof AuthError){
-        switch(err.type){
-            case "CredentialsSignin" : 
-            return {
-                type:'error',
-                resultCode: ResultCode.InvalidCredentials,
-            }
-            default: return {
-               type:'error',
-               resultCode: ResultCode.UnknownError,
-            }
-        }
-       
-       }
-       throw err
-   }
-}
-
-
-
-//for sign up
 export async function signUp(prevstate, formData){
 
     try{    

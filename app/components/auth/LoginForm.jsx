@@ -4,7 +4,7 @@ import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react"
 import Social from "../Social";
 import Link from "next/link";
-import {login} from '@/app/lib/action'
+import {login} from '@/app/lib/actions/login'
 import { useFormState, useFormStatus } from 'react-dom'
 import { getMessageFromCode } from "@/app/lib/errors"
 import { toast } from 'react-hot-toast';
