@@ -16,7 +16,6 @@ export async function login(prevstate, formData){
     const password = formData.get("password")
 
     const existingUser = await getUserByEmail(email)
-    const MatchPassword = await bcrypt.compare(password, existingUser.password)
 
     if(!existingUser || !existingUser.email || !existingUser.password){
         return {
@@ -24,6 +23,8 @@ export async function login(prevstate, formData){
             resultCode: ResultCode.InvalidCredentials,
         }
     }
+    const MatchPassword = await bcrypt.compare(password, existingUser.password)
+
     if(existingUser && MatchPassword && !existingUser.emailVerified){
         //send verification code to email
         const verificationToken = await generateVerificationToken(existingUser.email)

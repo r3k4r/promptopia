@@ -10,7 +10,7 @@ export const getVerificationTokenByEmail = async (email)=>{
         return err
     }
 }
-export const getVerificationTokenByTken = async (token)=>{
+export const getVerificationTokenByToken = async (token)=>{
     try{
         const verificationToken = await prisma.verificationToken.findUnique({
             where : { token } 
