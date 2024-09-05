@@ -7,6 +7,7 @@ import { AuthError } from "next-auth";
 import { prisma } from '../db';
 import { generateVerificationToken } from './tokens';
 import { getUserByEmail } from '@/data/user';
+import { sendVerficationEmail } from '../mail';
 
 //for sign in
 export async function login(prevstate, formData){
@@ -26,6 +27,7 @@ export async function login(prevstate, formData){
     if(existingUser && MatchPassword && !existingUser.emailVerified){
         //send verification code to email
         const verificationToken = await generateVerificationToken(existingUser.email)
+        await sendVerficationEmail(verificationToken.email, verificationToken.token)
 
         return {
             type: 'verification',

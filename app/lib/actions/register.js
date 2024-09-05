@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 import { prisma } from '../db';
 import { ResultCode } from "@/app/lib/errors"; 
 import { generateVerificationToken } from './tokens';
-
+import { sendVerficationEmail } from '../mail';
 export async function signUp(prevstate, formData){
 
     try{    
@@ -42,7 +42,8 @@ export async function signUp(prevstate, formData){
         if(user){
             //send verification code to email
             const verificationToken = await generateVerificationToken(email)
-        
+            await sendVerficationEmail(verificationToken.email, verificationToken.token)
+            
             return {
                 type: 'success',
                 resultCode: ResultCode.Verification,

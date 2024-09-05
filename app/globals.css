@@ -70,6 +70,10 @@
   .red_btn {
     @apply rounded-full bg-red-600 py-1.5 px-5 text-white transition-all hover:bg-red-700 font-bold text-center text-sm  flex items-center justify-center;
   }
+
+  .green_btn {
+    @apply rounded-full bg-green-600 py-1.5 px-5 text-white transition-all hover:bg-green-700 font-bold text-center text-sm  flex items-center justify-center;
+  }
   .desc {
     @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
   }
