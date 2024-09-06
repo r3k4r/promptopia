@@ -1,4 +1,4 @@
-import { signOut } from '@/auth'
+import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 
 export function LoginButton({children, mode="redirect", asChild }) {
@@ -17,12 +17,6 @@ export function LoginButton({children, mode="redirect", asChild }) {
 
 export async function SignOut(){
     return(
-        <form action={async()=>{
-            'use server'
-
-            await signOut()
-        }}> 
-            <button className='black_btn' type="submit">Sign Out</button>
-        </form>    
+            <button onClick={signOut} className='black_btn' type="submit">Sign Out</button>
     )
 }
