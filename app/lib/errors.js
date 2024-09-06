@@ -2,6 +2,7 @@ export const ResultCode = {
   InvalidCredentials: 'INVALID_CREDENTIALS',
   InvalidSubmission: 'INVALID_SUBMISSION',
   UserAlreadyExists: 'USER_ALREADY_EXISTS',
+  UserDoesNotExist: 'USER_DOES_NOT_EXIST',
   UnknownError: 'UNKNOWN_ERROR',
   UserCreated: 'USER_CREATED',
   UserLoggedIn: 'USER_LOGGED_IN',
@@ -20,6 +21,8 @@ export const getMessageFromCode = (resultCode) => {
         return 'Invalid submission, please try again!'
       case ResultCode.UserAlreadyExists:
         return 'User already exists, please log in!'
+      case ResultCode.UserDoesNotExist:
+        return 'Email does not exist...!'
       case ResultCode.UserCreated:
         return 'User created, welcome!'
       case ResultCode.UnknownError:
@@ -29,9 +32,9 @@ export const getMessageFromCode = (resultCode) => {
       case ResultCode.Verification:
         return 'Confirmation Email Sent...!'
       case ResultCode.TokenExisting:
-        return 'Error verifying Your Email'
+        return 'Email already veried'
       case ResultCode.ExpiredToken:
-        return 'Token is Expired...!s'
+        return 'Token is Expired...!'
       case ResultCode.EmailVerified:
         return 'Your Email is Verified'
       case ResultCode.UserLoggedIn:

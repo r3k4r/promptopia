@@ -33,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       //add 2fa check
 
-      return trur
+      return true
     },
     async session({ token, session }) {
       if (token.sub && session.user) {

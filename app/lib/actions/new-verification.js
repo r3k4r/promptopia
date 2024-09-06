@@ -4,6 +4,7 @@
 import { prisma } from "../db";
 import { getVerificationTokenByToken } from "@/data/verificationToken/verificationToken";
 import { ResultCode } from "../errors";
+import { getUserByEmail } from "@/data/user";
 
 
 export const newVerification = async (token) => {
@@ -23,5 +24,31 @@ export const newVerification = async (token) => {
             type : 'error',
             resultCode: ResultCode.ExpiredToken,
         }
+    }
+
+    const existingUser = await getUserByEmail(existingToken.email)
+
+    if(!existingUser){
+        return{
+            type : 'error',
+            resultCode: ResultCode.UserDoesNotExist,
+        }
+    }
+
+    await prisma.user.update({
+        where : { id : existingUser.id },
+        data : {
+            emailVerified : new Date(),
+            email : existingToken.email
+        }
+    })
+
+    await prisma.verificationToken.delete({
+        where : { id : existingToken.id }
+    })
+
+    return { 
+        type : 'success',
+        resultCode : ResultCode.EmailVerified
     }
 }
