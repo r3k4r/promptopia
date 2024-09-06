@@ -1,5 +1,4 @@
 
-import { SignOut } from "@/app/components/ui/Buttons";
 import Toggle from "./ui/Toggle";
 
 
@@ -10,7 +9,6 @@ export const DesktopProfileToggle = ({session}) => {
       <div>
         <Toggle session={session} />
       </div>  
-      <SignOut />
     </div>
   )
 }
@@ -19,6 +17,6 @@ export const DesktopProfileToggle = ({session}) => {
 
 export const MobileProfileToggle = () =>{
     return (
-        <div><SignOut /></div>
+        <div>hahah</div>
       )
 }
