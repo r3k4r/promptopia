@@ -46,7 +46,7 @@ const LoginForm = () => {
         <div className="flex flex-col space-y-1 w-full">
           <div className={`w-full flex items-center justify-between`}>
              <label htmlFor="password" className="text-sm font-semibold">Password</label>
-             <Link href='/auth/forgot' className="text-sm text-blue-500 font-semibold">Forgot Password?</Link>
+             <Link href='/auth/reset' className="text-sm text-blue-500 font-semibold">Forgot Password?</Link>
           </div>
         <input placeholder="8 character Password"  name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md w-full" />
         <i className={`absolute ${error? "left-[310px] sm:left-[405px] bottom-[3px]" : "left-[310px] sm:left-[405px] bottom-[288px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
