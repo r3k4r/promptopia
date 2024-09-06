@@ -1,5 +1,4 @@
 
-
 import Register from "@/app/components/auth/Register"
 
 const page = () => {

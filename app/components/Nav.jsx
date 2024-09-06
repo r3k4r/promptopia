@@ -6,6 +6,7 @@ import { auth, handlers } from "@/auth"
 
 const Nav = async() => {
   const session = await auth()
+  
  
 
   return (
@@ -22,16 +23,9 @@ const Nav = async() => {
       </Link>
 
       <div className='sm:flex hidden'>
-       
-    
               {session? <SignOut />: <LoginButton />}
-              
       </div>
-
-     
       <div className='sm:hidden flex relative'>
-        
-        
       {session? <SignOut />: <LoginButton />}
              
       </div>

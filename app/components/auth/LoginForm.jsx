@@ -49,7 +49,7 @@ const LoginForm = () => {
              <Link href='/auth/forgot' className="text-sm text-blue-500 font-semibold">Forgot Password?</Link>
           </div>
         <input placeholder="8 character Password"  name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md w-full" />
-        <i className={`absolute ${error? "left-[310px] sm:left-[405px] bottom-[363px]" : "left-[310px] sm:left-[405px] bottom-[294px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
+        <i className={`absolute ${error? "left-[310px] sm:left-[405px] bottom-[3px]" : "left-[310px] sm:left-[405px] bottom-[288px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
         {passwordShown ? (
             <EyeIcon className="h-5 w-5" />
         ) : (
@@ -73,7 +73,7 @@ const LoginForm = () => {
         </div>
       )}
 
-        <button type="submit" aria-disabled={pending} className="bg-primary-orange hover:bg-orange-600 text-white p-3 rounded-md font-bold">Login</button>
+        <button type="submit" aria-disabled={pending} className="bg-primary-orange hover:bg-orange-600 text-white p-2 rounded-md font-bold">Login</button>
 
         <div className="flex space-y-1 items-right justify-end text-[15px]">
             <p>Forgot password?</p>
