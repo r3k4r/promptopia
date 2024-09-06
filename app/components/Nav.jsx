@@ -6,12 +6,6 @@ import { auth, handlers } from "@/auth"
 
 const Nav = async() => {
   const session = await auth()
-
-  console.log(session)
-
-
-
-
  
 
   return (

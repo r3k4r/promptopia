@@ -16,7 +16,6 @@ const LoginForm = () => {
     const [error, setError] = useState('');
     const router = useRouter()
     const [result, dispatch] = useFormState(login, undefined)
-    console.log(result)
     const { pending } = useFormStatus()
 
     useEffect(() => {
@@ -45,7 +44,10 @@ const LoginForm = () => {
         </div>
 
         <div className="flex flex-col space-y-1 w-full">
-        <label htmlFor="password" className="text-sm font-semibold">Password</label>
+          <div className={`w-full flex items-center justify-between`}>
+             <label htmlFor="password" className="text-sm font-semibold">Password</label>
+             <Link href='/auth/forgot' className="text-sm text-blue-500 font-semibold">Forgot Password?</Link>
+          </div>
         <input placeholder="8 character Password"  name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md w-full" />
         <i className={`absolute ${error? "left-[310px] sm:left-[405px] bottom-[363px]" : "left-[310px] sm:left-[405px] bottom-[294px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
         {passwordShown ? (

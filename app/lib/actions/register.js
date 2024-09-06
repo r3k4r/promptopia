@@ -41,8 +41,8 @@ export async function signUp(prevstate, formData){
 
         if(user){
             //send verification code to email
-            const verificationToken = await generateVerificationToken(email)
-            await sendVerficationEmail(verificationToken.email, verificationToken.token)
+            // const verificationToken = await generateVerificationToken(email)
+            // await sendVerficationEmail(verificationToken.email, verificationToken.token)
             
             return {
                 type: 'success',

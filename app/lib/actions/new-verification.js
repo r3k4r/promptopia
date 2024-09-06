@@ -46,7 +46,6 @@ export const newVerification = async (token) => {
     await prisma.verificationToken.delete({
         where : { id : existingToken.id }
     })
-
     return { 
         type : 'success',
         resultCode : ResultCode.EmailVerified
