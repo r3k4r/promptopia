@@ -31,7 +31,7 @@ const Nav = async() => {
 
        {/* mobile navigation */}
       <div className='sm:hidden flex relative'>
-         {session? <MobileProfileToggle />: <LoginButton />}   
+         {session? <MobileProfileToggle session={session}/>: <LoginButton />}   
       </div>
     </nav>
   );
