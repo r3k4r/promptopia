@@ -1,5 +1,3 @@
-'use client'
-
 import { signOut } from '@/auth'
 import Link from 'next/link'
 
@@ -19,7 +17,12 @@ export function LoginButton({children, mode="redirect", asChild }) {
 
 export async function SignOut(){
     return(
-            <button onClick={signOut} className='black_btn' type="submit">Sign Out</button>
- 
+        <form action={async()=>{
+            'use server'
+
+            await signOut()
+        }}> 
+            <button className='black_btn' type="submit">Sign Out</button>
+        </form>    
     )
 }
