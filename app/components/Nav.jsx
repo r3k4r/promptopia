@@ -24,15 +24,14 @@ const Nav = async() => {
         <p className='logo_text'>Promptopia</p>
       </Link>
 
-      
+      {/* desktop navigation */}
       <div className='sm:flex hidden'>
-              {session? <DesktopProfileToggle />: <LoginButton />}
+          {session? <DesktopProfileToggle session={session}/>: <LoginButton />}
       </div>
 
-     
+       {/* mobile navigation */}
       <div className='sm:hidden flex relative'>
-      {session? <MobileProfileToggle />: <LoginButton />}
-             
+         {session? <MobileProfileToggle />: <LoginButton />}   
       </div>
     </nav>
   );
