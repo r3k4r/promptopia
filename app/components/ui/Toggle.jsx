@@ -45,7 +45,7 @@ const Toggle = ({session}) => {
         <div className="py-1">
           <MenuItem>
             <Link
-              href={`/profile/${session?.user?.id}`}
+              href={`/profile`}
               className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
             >
               Profile

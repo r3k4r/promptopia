@@ -79,7 +79,10 @@
     @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
   }
   
-
+  .head_text {
+    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+  }
+  
   .blue_gradient {
     @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
   }
