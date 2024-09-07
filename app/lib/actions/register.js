@@ -35,7 +35,8 @@ export async function signUp(prevstate, formData){
             data:{
                 name: name,
                 email: email,
-                password: hashedPassword
+                password: hashedPassword,
+                image : "/assets/images/image.png"
             }
         })
 
