@@ -1,5 +1,5 @@
 import Nav from "./components/Nav";
-
+import Feed from "./components/Feed";
 
 const page = () => {
   return (
@@ -17,7 +17,7 @@ const page = () => {
       discover, create and share creative prompts
     </p>
 
-    {/* <Feed /> */}
+    <Feed />
   </section> 
   
 </>

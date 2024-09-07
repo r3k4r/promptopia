@@ -6,6 +6,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { signOut } from 'next-auth/react'
 import { useState, useEffect } from "react"
+import Link from "next/link";
 import pro from "@/public/assets/images/image.png"
 
 
@@ -43,12 +44,12 @@ const Toggle = ({session}) => {
       >
         <div className="py-1">
           <MenuItem>
-            <a
-              href="#"
+            <Link
+              href={`/profile/${session?.user?.id}`}
               className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
             >
               Profile
-            </a>
+            </Link>
           </MenuItem>
           <MenuItem>
             <a
