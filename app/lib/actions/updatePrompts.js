@@ -1,3 +1,6 @@
+'use server'
+
+
 import { prisma } from "@/app/lib/db";
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';

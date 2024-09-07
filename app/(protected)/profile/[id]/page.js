@@ -1,26 +1,34 @@
-'use client'
+"use client";
 
-import { useParams } from "next/navigation"
-import { useSession } from "next-auth/react"
+
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import Profile from "@/app/components/Profile"
 
+export default function NotYourProfile({ params }){
 
-export default function Profile(){
-    const { data: session } = useSession();
-    const SessionId = session?.user?.id
-    const {id} = useParams()
-    const [isOwner, setIsOwner] = useState()
+    const searchParams = useSearchParams();
+  const userName = searchParams.get("name");
+  const [userPosts, setUserPosts] = useState([]);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch(`/api/users/${params?.id}/posts`);
+      const data = await response.json();
+
+      setUserPosts(data);
+    };
+
+    if (params?.id) fetchPosts();
+  }, [params.id]);
     
-    useEffect(() => {
-        if(SessionId === id){
-            setIsOwner(true)
-        }else{
-            setIsOwner(false)
-        }
-    }, [SessionId, id])
+   
 
     return (
-        <p>{id}</p>
+        <Profile
+        name={userName}
+        desc={`Welcome to ${userName}'s personalized profile page. Explore ${userName}'s exceptional prompts and be inspired by the power of their imagination`}
+        data={userPosts}
+      />
     )
 }

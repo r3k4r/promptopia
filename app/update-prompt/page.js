@@ -7,7 +7,6 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { ForUpdatingPrompt } from './../lib/actions/updatePrompts';
 
 const UpdatePrompt = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
 
