@@ -4,15 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@/app/components/Form";
 import { useFormState, useFormStatus } from 'react-dom'
-import {ForUpdatingPrompt} from '@/app/lib/actions/updatePrompts'
-
+import { ForUpdatingPrompt } from './../lib/actions/updatePrompts';
 
 const UpdatePrompt = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
 
-  const [post, setPost] = useState({ prompt: "", tag: "", });
+  const [post, setPost] = useState({ prompt: "", tag: "", id: promptId });
   const [result, updatePrompt] = useFormState(ForUpdatingPrompt, undefined)
   const { pending } = useFormStatus()
 

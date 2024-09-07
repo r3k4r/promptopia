@@ -1,26 +1,30 @@
 import { prisma } from "@/app/lib/db";
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-export const ForUpdatingPrompt = async (prevstate, formData, req) => {
+export async function ForUpdatingPrompt(prevstate, formData){
+
     const text_area = formData.get("text_area");
     const tag = formData.get("tag");
-    
-    const url = new URL(req.url);
-    const id = url.searchParams.get('id');
+    const id = formData.get("id");
+    console.log("where are youuuuuuuu " + text_area, tag, id);
 
     try {
-        const prompt = await prisma.prompt.update({
-            where: {
-                id: id 
-            },
-            data: {
-                prompt: text_area,
-                tags: tag
-            }
-        });
-
-        return new Response(JSON.stringify(prompt), { status: 200 });
+            const prompt = await prisma.prompt.update({
+                data : {
+                    prompt : text_area,
+                    tags : tag
+                },
+                where : {
+                    id : id
+                }
+            })
     } catch (err) {
         console.log(err);
         return new Response('Internal Server Error', { status: 500 });
     }
+
+    revalidatePath('/', '/profile');
+    redirect('/');
+
 };

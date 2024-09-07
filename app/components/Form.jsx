@@ -47,6 +47,7 @@ const Form = ({type, post, setPost, submitting, handleSubmit  }) => {
             className='w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0'
           />
         </label>
+        <input type="hidden" name="id" value={post?.id} /> 
 
         <div className='flex items-center justify-start mx-3 mb-5 gap-4'>
           <Link href='/' className='text-red-600 text-sm font-semibold rounded-full transition-all duration-300 px-5 py-1.5 hover:bg-red-600 hover:text-white'>
