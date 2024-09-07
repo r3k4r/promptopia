@@ -15,18 +15,11 @@ const CreatePrompt = () => {
 
   return (
     <>
-    <div className="absolute top-0 left-7 xl:left-0 mt-10">
-     <BackButton />
-     </div>
-
-     <div className={`py-20 lg:pt-5`}>
-    <Form
-      type='Create'
-      submitting={pending}
-      handleSubmit={createPrompt}
-    />
-    </div>
-
+      <Form
+        type='Create'
+        submitting={pending}
+        handleSubmit={createPrompt}
+      />
     </>
   );
 };

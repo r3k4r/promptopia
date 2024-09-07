@@ -37,7 +37,7 @@ useEffect(() => {
   }, [result, router])
 
   return (
-    <form action={dispatch} className="flex flex-col space-y-5 mt-5 w-full px-8 ">
+    <form action={dispatch} className="flex flex-col space-y-5 mt-5 w-full px-2 sm:px-8 ">
         <div className="flex flex-col space-y-1">
             <label htmlFor="name" className="text-sm font-semibold">Name</label>
             <input placeholder="e.g John, Redyar" required name="name" type="text" id="name" className="p-2 border border-gray-300 rounded-md w-full" />
@@ -50,7 +50,7 @@ useEffect(() => {
         <div className="flex flex-col space-y-1 w-full">
             <label htmlFor="password" className="text-sm font-semibold">Password</label>
             <input placeholder="8 character Password" required name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md w-full " />
-            <i className={`absolute ${error? "left-[310px] sm:left-[405px] bottom-[313px]" : "left-[310px] sm:left-[405px] bottom-[246px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
+            <i className={`absolute ${error? "left-[290px] sm:left-[405px] bottom-[328px] sm:bottom-[313px]" : "left-[290px] sm:left-[405px] bottom-[246px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
             {passwordShown ? (
                 <EyeIcon className="h-5 w-5" />
             ) : (
