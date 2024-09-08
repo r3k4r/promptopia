@@ -1,11 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
-export const useTheme = () => {
+const ThemeContext = createContext();
+
+export const useThemeContext = () => useContext(ThemeContext);
+
+
+export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
+    // Get the system's color scheme preference or the saved theme from localStorage
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const savedTheme = localStorage.getItem('theme') || systemTheme;
 
@@ -21,5 +27,9 @@ export const useTheme = () => {
     localStorage.setItem('theme', newTheme);
   };
 
-  return [theme, toggleTheme];
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
