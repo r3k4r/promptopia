@@ -1,18 +1,20 @@
 
 import Link from "next/link";
-import Toggle from "./ui/Toggle";
+import {DesctopToggle , MobileToggle} from "./ui/Toggle";
+import ThemeToggle from "./ThemeToggle";
 
 
 export const DesktopProfileToggle = ({session}) => {
   return (
 
     <div className="flex items-center justify-center gap-4">
+      <ThemeToggle />
         <Link href={`/create-prompt`}>
           <div className="black_btn">
             Create Prompt
           </div>
         </Link>
-        <Toggle session={session} />
+        <DesctopToggle session={session} />
     </div>
   )
 }
@@ -22,12 +24,8 @@ export const DesktopProfileToggle = ({session}) => {
 export const MobileProfileToggle = ({session}) =>{
     return (
       <div className="flex items-center justify-center gap-4">
-          <Link href={"/create-prompt"}>
-            <div className="black_btn">
-              Create Prompt
-            </div>
-          </Link>
-          <Toggle session={session} />
+         <ThemeToggle />
+          <MobileToggle session={session} />
       </div>
       )
 }
