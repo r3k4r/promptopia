@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Form from "@/app/components/Form";
 import { useFormState, useFormStatus } from 'react-dom'
-import { ForUpdatingPrompt } from './../lib/actions/updatePrompts';
+import { ForUpdatingPrompt } from '../../lib/actions/updatePrompts';
 
 const UpdatePrompt = () => {
   const searchParams = useSearchParams();
@@ -33,6 +33,7 @@ const UpdatePrompt = () => {
 
 
   return (
+    <>
     <Form
       type='Edit'
       post={post}
@@ -40,6 +41,7 @@ const UpdatePrompt = () => {
       submitting={pending}
       handleSubmit={updatePrompt}
     />
+    </>
   );
 };
 

@@ -80,7 +80,7 @@ const Feed = () => {
           placeholder='Search for a tag or a username'
           value={searchText}
           onChange={handleSearchChange}
-          className='block w-full rounded-md border border-gray-200 bg-white py-2.5  pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0 peer'
+          className='block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 py-2.5  pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 peer'
         />
       </form>
 

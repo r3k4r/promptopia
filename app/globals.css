@@ -8,6 +8,7 @@ html {
 }
 
 .smooth_content {
+  opacity: 65%;
   width: 100vw;
     min-height: 100vh;
     position: fixed;
@@ -15,7 +16,7 @@ html {
     justify-content: center;
     padding: 120px 24px 160px 24px;
     pointer-events: none;
-
+    background-color:black;
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.07) 2px,
       transparent 2px

@@ -40,7 +40,7 @@ const LoginForm = () => {
     <form action={dispatch} className="flex flex-col space-y-5 mt-5 w-full px-2 sm:px-8">
         <div className="flex flex-col space-y-1">
             <label htmlFor="email" className="text-sm font-semibold">Email</label>
-            <input placeholder="example@gmail.com"  name="email" type="email" id="email" className="p-2 border border-gray-300 rounded-md w-full" />
+            <input placeholder="example@gmail.com"  name="email" type="email" id="email" className="dark:text-black text-black p-2 border border-gray-300 rounded-md w-full" />
         </div>
 
         <div className="flex flex-col space-y-1 w-full">
@@ -48,7 +48,7 @@ const LoginForm = () => {
              <label htmlFor="password" className="text-sm font-semibold">Password</label>
              <Link href='/auth/reset' className="text-sm text-blue-500 font-semibold">Forgot Password?</Link>
           </div>
-        <input placeholder="8 character Password"  name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md w-full" />
+        <input placeholder="8 character Password"  name="password" type={passwordShown ? "text" : "password"} id="password" className="peer p-2 border border-gray-300 rounded-md w-full dark:text-black text-black" />
         <i className={`absolute ${error? "left-[290px] sm:left-[405px] bottom-[355px]" : "left-[290px] sm:left-[405px] bottom-[288px]"} text-gray-400 peer-focus:text-gray-900`} onClick={() => setShowPassword(!passwordShown)}>
         {passwordShown ? (
             <EyeIcon className="h-5 w-5" />
