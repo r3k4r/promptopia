@@ -49,12 +49,12 @@ export const DesctopToggle = ({session}) => {
             </Link>
           </MenuItem>
           <MenuItem>
-            <a
-              href="#"
+            <Link
+              href="settings"
               className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
             >
               Profile Setting
-            </a>
+            </Link>
           </MenuItem>
           <MenuItem>
             <a
@@ -117,12 +117,17 @@ export const MobileToggle = ({session})=>{
             </Link>
           </MenuItem>
           <MenuItem>
-            <a
-              href="#"
+              <Link className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900" href={"/create-prompt"}>
+                Create Prompt
+            </Link>
+          </MenuItem>
+          <MenuItem>
+          <Link
+              href="settings"
               className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
             >
               Profile Setting
-            </a>
+            </Link>
           </MenuItem>
           <MenuItem>
             <a
@@ -131,11 +136,6 @@ export const MobileToggle = ({session})=>{
             >
               FAQ
             </a>
-          </MenuItem>
-          <MenuItem>
-              <Link className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900" href={"/create-prompt"}>
-                Create Prompt
-            </Link>
           </MenuItem>
             <MenuItem>
             <div onClick={signOut} className="block rounded-lg px-4 py-2 text-sm font-semibold text-red-600 data-[focus]:bg-red-600 data-[focus]:text-white cursor-pointer">

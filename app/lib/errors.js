@@ -10,7 +10,8 @@ export const ResultCode = {
   Verification : 'CONFIRMATION_EMAIL_SENT',
   TokenExisting : "TOKEN_EXISTING",
   ExpiredToken: "EXPIRED_TOKEN",
-  EmailVerified: "EMAIL_VERIFIED"
+  EmailVerified: "EMAIL_VERIFIED",
+  ResetPassword: "RESET_PSSSWORD"
 };
 
 export const getMessageFromCode = (resultCode) => {
@@ -37,6 +38,8 @@ export const getMessageFromCode = (resultCode) => {
         return 'Token is Expired...!'
       case ResultCode.EmailVerified:
         return 'Your Email is Verified'
+      case ResultCode.ResetPassword:
+        return 'Reset Email Sent!'
       case ResultCode.UserLoggedIn:
         return 'Logged in!'
     }
