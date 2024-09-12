@@ -2,6 +2,9 @@
 
 import { getUserByEmail } from "@/data/user"
 import { ResultCode } from "@/app/lib/errors"; 
+import { generateResetPasswordToken } from "./tokens";
+import { sendResetPasswordEmail } from "../mail";
+import { prisma } from "../db";
 
 
  export const reset = async(prevstate, formData)=>{
@@ -15,6 +18,9 @@ import { ResultCode } from "@/app/lib/errors";
             resultCode: ResultCode.UserDoesNotExist,
         }
     }
+
+    const token = await generateResetPasswordToken(email)
+    await sendResetPasswordEmail(token.email, token.token)
 
     return{
         type: 'reset',

@@ -14,16 +14,16 @@ datasource db {
 }
 
 model User {
-  id              String    @id @default(uuid())
-  name            String?
-  email           String    @unique
-  password        String?
-  image           String?
-  emailVerified   DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  prompts         Prompt[]
-  accounts        Account[]
+  id            String    @id @default(uuid())
+  name          String?
+  email         String    @unique
+  password      String?
+  image         String?
+  emailVerified DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  prompts       Prompt[]
+  accounts      Account[]
 }
 
 model Account {
@@ -55,6 +55,15 @@ model Prompt {
 }
 
 model VerificationToken {
+  id      String   @id @default(uuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model ResetPasswordToken {
   id      String   @id @default(uuid())
   email   String
   token   String   @unique
