@@ -8,10 +8,12 @@ export const ResultCode = {
   UserLoggedIn: 'USER_LOGGED_IN',
   InvalidPassword: 'INVALID_PASSWORD',
   Verification : 'CONFIRMATION_EMAIL_SENT',
+  PasswordReseted : 'PASSWORD_RESETED',
   TokenExisting : "TOKEN_EXISTING",
   ExpiredToken: "EXPIRED_TOKEN",
   EmailVerified: "EMAIL_VERIFIED",
-  ResetPassword: "RESET_PSSSWORD"
+  ResetPassword: "RESET_PSSSWORD",
+  PasswordsDontMatch : "PASSWORD_MATCH"
 };
 
 export const getMessageFromCode = (resultCode) => {
@@ -40,6 +42,10 @@ export const getMessageFromCode = (resultCode) => {
         return 'Your Email is Verified'
       case ResultCode.ResetPassword:
         return 'Reset Email Sent!'
+      case ResultCode.PasswordReseted:
+        return 'Password Updated!'
+      case ResultCode.PasswordsDontMatch:
+        return 'Password Dont Match!'
       case ResultCode.UserLoggedIn:
         return 'Logged in!'
     }
