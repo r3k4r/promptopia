@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Form from "@/app/components/Form";
 import { useFormState, useFormStatus } from 'react-dom'
@@ -34,13 +34,15 @@ const UpdatePrompt = () => {
 
   return (
     <>
-    <Form
-      type='Edit'
-      post={post}
-      setPost={setPost}
-      submitting={pending}
-      handleSubmit={updatePrompt}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Form
+        type='Edit'
+        post={post}
+        setPost={setPost}
+        submitting={pending}
+        handleSubmit={updatePrompt}
+      />
+    </Suspense>  
     </>
   );
 };

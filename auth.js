@@ -7,6 +7,7 @@ import { getUserById } from './data/user/index';
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
   pages :{
     signIn : "auth/login",
     error : "auth/error",
