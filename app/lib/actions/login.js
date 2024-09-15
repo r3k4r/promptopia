@@ -5,11 +5,12 @@ import { ResultCode } from "@/app/lib/errors";
 import {signIn} from '@/auth' 
 import { AuthError } from "next-auth";
 import { prisma } from '../db';
-import { generateVerificationToken } from './tokens';
+import { generateVerificationToken, generateTwoFactorToken } from './tokens';
 import { getUserByEmail } from '@/data/user';
-import { sendVerficationEmail } from '../mail';
+import { sendVerficationEmail, sendTwoFactorEmail } from '../mail';
+import { redirect } from 'next/navigation'
 
-//for sign in
+
 export async function login(prevstate, formData){
 
     const email = formData.get("email")
@@ -34,7 +35,14 @@ export async function login(prevstate, formData){
             type: 'verification',
             resultCode: ResultCode.Verification,
         }
-    } 
+    }  
+
+    if(existingUser.isTwoFactorEnabled && existingUser.email){
+        const twoFactorToken = await generateTwoFactorToken(existingUser.email)
+        await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token)
+
+        redirect('/auth/two-factor')
+    }
 
    try{
    

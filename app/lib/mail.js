@@ -8,7 +8,7 @@ export const sendTwoFactorEmail = async (email, token) =>{
         from : "onboarding@resend.dev",
         to  : email,
         subject : "Two Factor Authentication Code",
-        html: `<p>Your Two Factor Authentication Code is ${token}</p>`
+        html: `<p>Your Two Factor Authentication Code is <span style="font-weight: bold; color: blue">${token}</span></p>`
     })
 }
 

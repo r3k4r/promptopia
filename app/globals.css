@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
   transition: background-color 0.3s, color 0.3s;
 }
+::selection{
+  background-color: gray;
+  color: white;
+}
 
 .smooth_content {
   opacity: 65%;
