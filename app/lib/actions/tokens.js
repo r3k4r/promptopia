@@ -1,12 +1,14 @@
 //npm i uuid
 import { getVerificationTokenByEmail } from "@/data/verificationToken/verificationToken"
 import { getPasswordTokenByEmail } from "@/data/resetPasswordToken/passwordResetToken"
+import { getTwoFactorTokenByEmail } from "@/data/twoFactor-token/two-factor-token"
 import { v4 as uuidv4 } from "uuid"
+import crypto from "crypto"
 import { prisma } from "@/app/lib/db"
 
 export const generateVerificationToken = async (email)=>{
     const token = uuidv4()
-    const expires = new Date(new Date().getTime() + 3600 * 1000) //expires the token in 1 hour
+    const expires = new Date(new Date().getTime() + 900000) //expires the token in 15 minutes
 
     const existingToken = await getVerificationTokenByEmail(email)
 
@@ -32,7 +34,7 @@ export const generateVerificationToken = async (email)=>{
 
 export const generateResetPasswordToken = async(email)=>{
     const token = uuidv4()
-    const expires = new Date(new Date().getTime() + 3600 * 1000) //expires the token in 1 hour
+    const expires = new Date(new Date().getTime() + 900000) //expires the token in 15 minutes
 
     const existingToken = await getPasswordTokenByEmail(email)
     
@@ -53,4 +55,29 @@ export const generateResetPasswordToken = async(email)=>{
     })
 
     return PasswordResetToken
+}
+
+export const generateTwoFactorToken = async(email)=>{
+    const token = crypto.randomInt(100_000, 1_000_000).toString()
+    const expires = new Date(new Date().getTime() + 900000) //expires the token in 15 minutes
+
+    const existingToken = await getTwoFactorTokenByEmail(email)
+
+    if(existingToken){
+        await prisma.twoFactorToken.delete({
+            where : {
+                id : existingToken.id
+            }
+        })
+    }
+
+    const twoFactorToken = await prisma.twoFactorToken.create({
+        data : {
+            email,
+            token,
+            expires
+        }
+    })
+
+    return twoFactorToken
 }

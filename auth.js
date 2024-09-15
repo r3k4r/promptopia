@@ -33,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       //prevent sign in without email verification
       if(!existingUser.emailVerified){ return false; }
 
-      //add 2fa check
+      //2fa check
 
       return true
     },
