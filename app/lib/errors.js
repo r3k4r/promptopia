@@ -13,6 +13,8 @@ export const ResultCode = {
   ExpiredToken: "EXPIRED_TOKEN",
   EmailVerified: "EMAIL_VERIFIED",
   ResetPassword: "RESET_PSSSWORD",
+  InvalidCode : "INVALID_CODE",
+  ExpiredCode : "EXPIRED_CODE",
   PasswordsDontMatch : "PASSWORD_MATCH"
 };
 
@@ -46,6 +48,10 @@ export const getMessageFromCode = (resultCode) => {
         return 'Password Updated!'
       case ResultCode.PasswordsDontMatch:
         return 'Password Dont Match!'
+      case ResultCode.InvalidCode:
+        return 'Invalid Code!'
+      case ResultCode.ExpiredCode:
+        return 'Code has expired!'
       case ResultCode.UserLoggedIn:
         return 'Logged in!'
     }
