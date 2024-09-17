@@ -10,7 +10,8 @@ export async function signUp(prevstate, formData){
 
     try{    
        const password= formData.get("password")
-       const name = formData.get("name")
+       const FirstName = formData.get("fname")
+       const LastName = formData.get("lname")
        const email = formData.get("email")
 
        
@@ -33,10 +34,10 @@ export async function signUp(prevstate, formData){
 
         const user = await prisma.user.create({
             data:{
-                name: name,
+                FirstName : FirstName,
+                LastName : LastName,
                 email: email,
                 password: hashedPassword,
-                image : "/assets/images/image.png"
             }
         })
 

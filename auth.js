@@ -55,18 +55,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
         session.user.emailVerified = token.verify;
+        session.user.FirstName = token.FirstName;
+        session.user.LastName = token.LastName;
 
-      
       return session;
     },
     async jwt({ token }) {
       if (!token.sub) return token;
 
        const verifiedEmail = await getUserById(token.sub);
-
       if (!verifiedEmail) return token;
 
       token.verify = verifiedEmail.emailVerified;
+      token.FirstName = verifiedEmail.FirstName;
+      token.LastName = verifiedEmail.LastName;
 
       return token;
     },

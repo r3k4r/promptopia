@@ -10,11 +10,14 @@ import Link from "next/link";
 
 
 export const DesctopToggle = ({session}) => {
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState(false)
+    const firstLetter = session.user.FirstName.charAt(0).toUpperCase()
+    const secondLetter = session.user.LastName.charAt(0).toUpperCase()
+    
 
     useEffect(() => {
     if(session?.user?.image){
-      setImage(session?.user?.image)
+      setImage(true)
     }
   },[])
 
@@ -23,14 +26,25 @@ export const DesctopToggle = ({session}) => {
           <Menu as="div" className="relative inline-block text-left">
       <div>
         <MenuButton className={`flex items-center justify-center gap-2 flex-row-reverse`}>
-        <Image
-        src={image}
-        width={37}
-        height={37}
-        quality={100}
-        className='rounded-full'
-        alt='profile'
-        />
+       {
+        image ? 
+        <>
+          <Image
+          src={session?.user?.image}
+          width={40}
+          height={40}
+          quality={100}
+          className='rounded-full'
+          alt='profile'
+          />
+        </>
+        :
+        <>
+        <div className={`w-[37px] h-[37px] p-[23px] rounded-full border-none bg-gray-300 flex items-center justify-center text-md font-normal`}>
+            {firstLetter  + secondLetter} 
+        </div>
+        </>
+       }
           <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400" />
         </MenuButton>
       </div>

@@ -39,8 +39,12 @@ useEffect(() => {
   return (
     <form action={dispatch} className="flex flex-col space-y-5 mt-5 w-full px-2 sm:px-8 ">
         <div className="flex flex-col space-y-1">
-            <label htmlFor="name" className="text-sm font-semibold">Name</label>
-            <input placeholder="e.g John, Redyar" required name="name" type="text" id="name" className="dark:text-black text-black p-2 border border-gray-300 rounded-md w-full" />
+            <label htmlFor="fname" className="text-sm font-semibold">First Name</label>
+            <input placeholder="first name" required name="fname" type="text" id="fname" className="dark:text-black text-black p-2 border border-gray-300 rounded-md w-full" />
+        </div>
+        <div className="flex flex-col space-y-1">
+            <label htmlFor="lname" className="text-sm font-semibold">Name</label>
+            <input placeholder="elast name" required name="lname" type="text" id="lname" className="dark:text-black text-black p-2 border border-gray-300 rounded-md w-full" />
         </div>
         <div className="flex flex-col space-y-1 w-full">
             <label htmlFor="email" className="text-sm font-semibold">Email</label>

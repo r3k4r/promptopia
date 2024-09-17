@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
@@ -9,14 +9,23 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
-
+  const [image, setImage] = useState(false)
   const [copied, setCopied] = useState("");
+  const firstLetter = post.creator.FirstName.charAt(0).toUpperCase()
+  const secondLetter = post.creator.LastName.charAt(0).toUpperCase()
+  
+  useEffect(() => {
+    if(post?.creator?.image){
+      setImage(true)
+    }
+  },[])
+
 
   const handleProfileClick = () => {
 
     if (post.creator.id === session?.user.id) return router.push("/profile");
 
-    router.push(`/profile/${post.creator.id}?name=${post.creator.name}`);
+    router.push(`/profile/${post.creator.id}?name=${post.creator.FirstName}`);
   };
 
   const handleCopy = () => {
@@ -32,14 +41,25 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
           className='flex-1 flex justify-start items-center gap-3 cursor-pointer'
           onClick={handleProfileClick}
         >
+          {
+        image ? 
+        <>
           <Image
-            src={post.creator.image}
-            quality={100}
-            alt='user_image'
-            width={40}
-            height={40}
-            className='rounded-full object-contain'
+          src={post?.creator?.image}
+          width={40}
+          height={40}
+          quality={100}
+          className='rounded-full'
+          alt='profile'
           />
+        </>
+        :
+        <>
+        <div className={`w-[35px] h-[35px] p-[20px] rounded-full border-none bg-gray-300 flex items-center justify-center text-md font-normal`}>
+            {firstLetter  + secondLetter} 
+        </div>
+        </>
+       }
 
           <div className='flex flex-col'>
             <h3 className=' font-bold text-gray-900 dark:text-gray-100'>
