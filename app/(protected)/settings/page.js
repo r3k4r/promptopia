@@ -26,7 +26,7 @@ const settings = () => {
 
 return (
     <form>
-        <input />
+        
     </form>
   )
 }
