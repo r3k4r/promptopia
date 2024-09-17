@@ -57,6 +57,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.emailVerified = token.verify;
         session.user.FirstName = token.FirstName;
         session.user.LastName = token.LastName;
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
 
       return session;
     },
@@ -69,6 +70,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       token.verify = verifiedEmail.emailVerified;
       token.FirstName = verifiedEmail.FirstName;
       token.LastName = verifiedEmail.LastName;
+      token.isTwoFactorEnabled = verifiedEmail.isTwoFactorEnabled
 
       return token;
     },

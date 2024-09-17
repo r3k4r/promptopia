@@ -45,7 +45,6 @@ export const DesctopToggle = ({session}) => {
         </div>
         </>
        }
-          <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400" />
         </MenuButton>
       </div>
 
@@ -64,7 +63,7 @@ export const DesctopToggle = ({session}) => {
           </MenuItem>
           <MenuItem>
             <Link
-              href="settings"
+              href="/settings"
               className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
             >
               Profile Setting
@@ -92,11 +91,13 @@ export const DesctopToggle = ({session}) => {
 }
 
 export const MobileToggle = ({session})=>{
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(false)
+  const firstLetter = session.user.FirstName.charAt(0).toUpperCase()
+  const secondLetter = session.user.LastName.charAt(0).toUpperCase()
 
-    useEffect(() => {
+   useEffect(() => {
     if(session?.user?.image){
-      setImage(session?.user?.image)
+      setImage(true)
     }
   },[])
   
@@ -105,15 +106,25 @@ export const MobileToggle = ({session})=>{
           <Menu as="div" className="relative inline-block text-left">
       <div>
         <MenuButton className={`flex items-center justify-center gap-2 flex-row-reverse`}>
-        <Image
-        src={image}
-        width={37}
-        height={37}
-        quality={100}
-        className='rounded-full'
-        alt='profile'
-        />
-          <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400" />
+        {
+        image ? 
+        <>
+          <Image
+          src={session?.user?.image}
+          width={40}
+          height={40}
+          quality={100}
+          className='rounded-full'
+          alt='profile'
+          />
+        </>
+        :
+        <>
+        <div className={`w-[36px] h-[36px] p-[21px] rounded-full border-none bg-gray-300 text-black dark:bg-gray-500 dark:text-white flex items-center justify-center text-md font-normal`}>
+            {firstLetter  + secondLetter} 
+        </div>
+        </>
+       }
         </MenuButton>
       </div>
 
@@ -137,7 +148,7 @@ export const MobileToggle = ({session})=>{
           </MenuItem>
           <MenuItem>
           <Link
-              href="settings"
+              href="/settings"
               className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
             >
               Profile Setting
