@@ -48,64 +48,65 @@ export async function login(prevstate, formData){
         }
     }  
 
-    // if(existingUser.isTwoFactorEnabled && existingUser.email){
-    //     if(code){
-    //         const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email)
+    if(existingUser.isTwoFactorEnabled && existingUser.email){
+        if(code){
+            const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email)
 
-    //         if(!twoFactorToken){
-    //             return {
-    //                 type:'error',
-    //                 resultCode: ResultCode.InvalidCode,
-    //             }
-    //         }
-    //         if(twoFactorToken.token !== code){
-    //             return {
-    //                 type:'error',
-    //                 resultCode: ResultCode.InvalidCode,
-    //             }
-    //         }
+            if(!twoFactorToken){
+                return {
+                    type:'error',
+                    resultCode: ResultCode.InvalidCode,
+                }
+            }
+            if(twoFactorToken.token !== code){
+                return {
+                    type:'error',
+                    resultCode: ResultCode.InvalidCode,
+                }
+            }
 
-    //         const hasExpired = new Date(twoFactorToken.expires) < new Date()
+            const hasExpired = new Date(twoFactorToken.expires) < new Date()
 
-    //         if(hasExpired){
-    //             return{
-    //                 type:'error',
-    //                 resultCode: ResultCode.ExpiredCode,
-    //             }
-    //         }
+            if(hasExpired){
+                return{
+                    type:'error',
+                    resultCode: ResultCode.ExpiredCode,
+                }
+            }
 
-    //         await prisma.twoFactorToken.delete({
-    //             where : {
-    //                 id : twoFactorToken.id
-    //             }
-    //         })
+            await prisma.twoFactorToken.delete({
+                where : {
+                    id : twoFactorToken.id
+                }
+            })
 
-    //         const exsitingConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id)
+            const exsitingConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id)
 
-    //         if(exsitingConfirmation){
-    //             await prisma.twoFactorConfirmation.delete({
-    //                 where :{
-    //                     id : exsitingConfirmation.id
-    //                 }
-    //             })
-    //         }
+            if(exsitingConfirmation){
+                await prisma.twoFactorConfirmation.delete({
+                    where :{
+                        id : exsitingConfirmation.id
+                    }
+                })
+            }
 
-    //         await prisma.twoFactorConfirmation.create({
-    //             data : {
-    //                 userId : existingUser.id
-    //             }
-    //         })
-    //     }else{
+            await prisma.twoFactorConfirmation.create({
+                data : {
+                    userId : existingUser.id
+                }
+            })
+        }else{
 
-    //     const twoFactorToken = await generateTwoFactorToken(existingUser.email)
-    //     await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token)
+        const twoFactorToken = await generateTwoFactorToken(existingUser.email)
+        await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token)
 
-    //     return {
-    //         type: 'twoFactor',
-    //         resultCode: ResultCode.TwoFactor,
-    //     }
-    //     }
-    // }
+        return {
+           type : 'verification',
+           resultCode: ResultCode.TwoFactorSend,
+           twoFactor : 'seccess'
+        }
+        }
+    }
 
    try{
    

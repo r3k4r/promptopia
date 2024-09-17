@@ -34,18 +34,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if(!existingUser.emailVerified){ return false; }
 
       //2fa check
-      // if(existingUser.isTwoFactorEnabled){
-      //   const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
+      if(existingUser.isTwoFactorEnabled){
+        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
 
-      //   if(!twoFactorConfirmation){
-      //     return false;
-      //   }
+        if(!twoFactorConfirmation){
+          return false;
+        }
 
-      //   //delete twoFactor confirmation for next sign in
-      //   await prisma.twoFactorConfirmation.delete({
-      //     where : {id : twoFactorConfirmation.id}
-      //   })
-      // }
+        //delete twoFactor confirmation for next sign in
+        await prisma.twoFactorConfirmation.delete({
+          where : {id : twoFactorConfirmation.id}
+        })
+      }
 
       return true
     },

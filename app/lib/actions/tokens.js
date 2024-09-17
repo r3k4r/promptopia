@@ -8,7 +8,7 @@ import { prisma } from "@/app/lib/db"
 
 export const generateVerificationToken = async (email)=>{
     const token = uuidv4()
-    const expires = new Date(new Date().getTime() + 900000) //expires the token in 15 minutes
+    const expires = new Date(new Date().getTime() + 5 * 60 * 1000) //expires the token in 5 minutes
 
     const existingToken = await getVerificationTokenByEmail(email)
 
@@ -34,7 +34,7 @@ export const generateVerificationToken = async (email)=>{
 
 export const generateResetPasswordToken = async(email)=>{
     const token = uuidv4()
-    const expires = new Date(new Date().getTime() + 900000) //expires the token in 15 minutes
+    const expires = new Date(new Date().getTime() + 5 * 60 * 1000) //expires the token in 5 minutes
 
     const existingToken = await getPasswordTokenByEmail(email)
     
@@ -59,7 +59,7 @@ export const generateResetPasswordToken = async(email)=>{
 
 export const generateTwoFactorToken = async(email)=>{
     const token = crypto.randomInt(100_000, 1_000_000).toString()
-    const expires = new Date(new Date().getTime() + 900000) //expires the token in 15 minutes
+    const expires = new Date(new Date().getTime() + 5 * 60 * 1000) //expires the token in 5 minutes
 
     const existingToken = await getTwoFactorTokenByEmail(email)
 

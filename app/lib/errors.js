@@ -15,6 +15,7 @@ export const ResultCode = {
   ResetPassword: "RESET_PSSSWORD",
   InvalidCode : "INVALID_CODE",
   ExpiredCode : "EXPIRED_CODE",
+  TwoFactorSend  : "TWO_FACTOR_SEND",
   PasswordsDontMatch : "PASSWORD_MATCH"
 };
 
@@ -52,6 +53,8 @@ export const getMessageFromCode = (resultCode) => {
         return 'Invalid Code!'
       case ResultCode.ExpiredCode:
         return 'Code has expired!'
+      case ResultCode.TwoFactorSend:
+        return 'Confirmation Code Sent...!'
       case ResultCode.UserLoggedIn:
         return 'Logged in!'
     }

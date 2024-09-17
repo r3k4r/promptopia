@@ -15,7 +15,9 @@ const LoginForm = () => {
     const [passwordShown, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const router = useRouter()
+    const [twoFactor, setTwoFactor] = useState(false)
     const [result, dispatch] = useFormState(login, undefined)
+    console.log(result)
     const { pending } = useFormStatus()
 
     useEffect(() => {
@@ -24,7 +26,12 @@ const LoginForm = () => {
             const errorMessage = getMessageFromCode(result.resultCode);
             setError(errorMessage);
             toast.error(errorMessage);
-          } else if(result.type === 'verification'){
+          }else if(result.twoFactor === "seccess" && result.type === 'verification'){
+            setTwoFactor(true)
+            const errorMessage = getMessageFromCode(result.resultCode);
+            setError(errorMessage);
+            toast.error(errorMessage);
+        }else if(result.type === 'verification'){
             const errorMessage = getMessageFromCode(result.resultCode);
             setError(errorMessage);
             toast.error(errorMessage);
@@ -57,6 +64,14 @@ const LoginForm = () => {
         )}
         </i>
     </div>
+
+    {
+      twoFactor && 
+      <div className="flex flex-col space-y-1">
+        <label htmlFor="code" className="text-sm font-semibold">Code</label>
+        <input required  placeholder="Enter the code send to your email" maxLength={6}  name="code" type="text" id="code" className="dark:text-black text-black p-2 border border-gray-300 rounded-md w-full" />
+      </div>
+    }
 
     {error && (
         <div className={`p-3 ${result.type === 'verification' ? 'bg-teal-100' : 'bg-red-200'} rounded-md `}>
