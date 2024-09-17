@@ -55,7 +55,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
         </>
         :
         <>
-        <div className={`w-[35px] h-[35px] p-[20px] rounded-full border-none bg-gray-300 flex items-center justify-center text-md font-normal`}>
+        <div className={`w-[35px] h-[35px] p-[20px] rounded-full border-none bg-gray-300 text-black dark:bg-gray-500 dark:text-white  flex items-center justify-center text-md font-normal`}>
             {firstLetter  + secondLetter} 
         </div>
         </>
