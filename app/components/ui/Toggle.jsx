@@ -71,14 +71,6 @@ export const DesctopToggle = ({session}) => {
             </Link>
           </MenuItem>
           }
-          <MenuItem>
-            <a
-              href="#"
-              className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-            >
-              FAQ
-            </a>
-          </MenuItem>
             <MenuItem>
             <div onClick={signOut} className="block rounded-lg px-4 py-2 text-sm font-semibold text-red-600 data-[focus]:bg-red-600 data-[focus]:text-white cursor-pointer">
               Sign Out 
@@ -158,14 +150,6 @@ export const MobileToggle = ({session})=>{
             </Link>
           </MenuItem>
           }
-          <MenuItem>
-            <a
-              href="#"
-              className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-            >
-              FAQ
-            </a>
-          </MenuItem>
             <MenuItem>
             <div onClick={signOut} className="block rounded-lg px-4 py-2 text-sm font-semibold text-red-600 data-[focus]:bg-red-600 data-[focus]:text-white cursor-pointer">
               Sign Out 
