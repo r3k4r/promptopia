@@ -5,7 +5,6 @@ import { Switch } from '@headlessui/react'
 
 export default function FaSwitch() {
   const [enabled, setEnabled] = useState(false)
-    console.log(enabled)
 
   return (
     <div className="flex items-start justify-between">

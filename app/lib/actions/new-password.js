@@ -85,6 +85,63 @@ export const newPassword = async(prevstate, formData) => {
 }
 
 
+
+export const resetPasswordForSettings = async(prevstate, formData) => {
+    const currentPassword = formData.get("current_password")
+    const newPassword = formData.get("new_password")
+    const confirmPassword = formData.get("confirm_password")
+    const email = formData.get("email")
+
+    
+
+        const user = await getUserByEmail(email)
+        const usersPassword = await bcrypt.compare(currentPassword, user.password)
+
+    try{
+        if(!usersPassword){
+            return{
+                type : 'error',
+                resultCode : ResultCode.WrongCurrent
+            }
+        }
+
+        if(validatePassword(newPassword)){
+            if(confirmPassword !== newPassword){
+                return{
+                    type : 'error',
+                    resultCode : ResultCode.PasswordsDontMatch
+                }
+            }
+
+            const hashedPassword =await bcrypt.hash(newPassword, 12)
+
+            const updatedUser = await prisma.user.update({
+                where : { id : user.id },
+                data : {
+                    password : hashedPassword
+                }
+            })
+
+            return{
+                type : 'success',
+                resultCode : ResultCode.PasswordReseted
+            }
+            
+        }else if(!validatePassword(password)){
+        return {
+            type: 'error',
+            resultCode: ResultCode.InvalidPassword,
+        };
+    }
+    }catch(err){
+        return{
+            type : 'error',
+            resultCode : ResultCode.UnknownError
+        }
+    }
+}
+
+
 function validatePassword(password) {
     // Password validation logic here
     // You can use a regular expression or any other method to validate the password format

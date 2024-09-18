@@ -14,18 +14,18 @@ export default async function GenaralInformation(){
         <div className='flex md:flex-row flex-col items-start justify-start gap-5'>
            <div className="flex flex-col space-y-1">
                 <label htmlFor="fname" className="text-sm font-semibold">First Name</label>
-                <input value={session.user.FirstName}  name="fname" type="text" id="fname" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[300px] disabled:bg-white" />
+                <input value={session.user.FirstName}  name="fname" type="text" id="fname" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[280px] disabled:bg-white" />
             </div> 
 
             <div className="flex flex-col space-y-1">
                 <label htmlFor="lname" className="text-sm font-semibold">Last Name</label>
-                <input value={session.user.LastName}  name="lname" type="text" id="lname" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[300px] disabled:bg-white" />
+                <input value={session.user.LastName}  name="lname" type="text" id="lname" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[280px] disabled:bg-white" />
             </div> 
         </div>
 
         <div className="flex flex-col space-y-1">
             <label htmlFor="email" className="text-sm font-semibold">Email</label>
-            <input value={session.user.email}  name="email" type="email" id="email" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[300px] disabled:bg-white" />
+            <input value={session.user.email}  name="email" type="email" id="email" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[280px] disabled:bg-white" />
         </div> 
 
         <div className="flex flex-col space-y-1">

@@ -9,6 +9,7 @@ export const ResultCode = {
   InvalidPassword: 'INVALID_PASSWORD',
   Verification : 'CONFIRMATION_EMAIL_SENT',
   PasswordReseted : 'PASSWORD_RESETED',
+  WrongCurrent : "WRONG_CURRENT",
   TokenExisting : "TOKEN_EXISTING",
   ExpiredToken: "EXPIRED_TOKEN",
   EmailVerified: "EMAIL_VERIFIED",
@@ -49,6 +50,8 @@ export const getMessageFromCode = (resultCode) => {
         return 'Password Updated!'
       case ResultCode.PasswordsDontMatch:
         return 'Password Dont Match!'
+      case ResultCode.WrongCurrent:
+        return 'Current Password is Wrong!'
       case ResultCode.InvalidCode:
         return 'Invalid Code!'
       case ResultCode.ExpiredCode:
