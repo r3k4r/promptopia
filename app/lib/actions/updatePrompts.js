@@ -10,8 +10,6 @@ export async function ForUpdatingPrompt(prevstate, formData){
     const text_area = formData.get("text_area");
     const tag = formData.get("tag");
     const id = formData.get("id");
-    console.log("where are youuuuuuuu " + text_area, tag, id);
-
     try {
             const prompt = await prisma.prompt.update({
                 data : {

@@ -61,6 +61,7 @@ export const DesctopToggle = ({session}) => {
               Profile
             </Link>
           </MenuItem>
+          { image ? null :
           <MenuItem>
             <Link
               href="/settings"
@@ -69,6 +70,7 @@ export const DesctopToggle = ({session}) => {
               Profile Setting
             </Link>
           </MenuItem>
+          }
           <MenuItem>
             <a
               href="#"
@@ -146,6 +148,7 @@ export const MobileToggle = ({session})=>{
                 Create Prompt
             </Link>
           </MenuItem>
+          { image ? null :
           <MenuItem>
           <Link
               href="/settings"
@@ -154,6 +157,7 @@ export const MobileToggle = ({session})=>{
               Profile Setting
             </Link>
           </MenuItem>
+          }
           <MenuItem>
             <a
               href="#"

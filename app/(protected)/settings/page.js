@@ -21,20 +21,20 @@ return (
                     <GenaralInformation />
                 </div>
 
-            {  session.user.image ? null :     
+                 
                 <div id='TwoFactor'>
                     <form className='w-full max-w-2xl flex flex-col gap-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/20 dark:bg-black/20  shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5'>
                         <h1 className='text-2xl font-bold leading-[1.15] text-black dark:text-white sm:text-xl text-left'>General Infromation</h1>
                         <FaSwitch />
                     </form>
                 </div>
-            }
+            
            </div>
-           {  session.user.image ? null :
+           
             <div id='passwordInformation' className='pb-10 lg:pb-4'>
                <PasswordInformation />
             </div>
-            }
+            
         </div>
         
     </section>

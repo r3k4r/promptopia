@@ -127,7 +127,7 @@ export const resetPasswordForSettings = async(prevstate, formData) => {
                 resultCode : ResultCode.PasswordReseted
             }
             
-        }else if(!validatePassword(password)){
+        }else{
         return {
             type: 'error',
             resultCode: ResultCode.InvalidPassword,

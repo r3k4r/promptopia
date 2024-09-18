@@ -94,7 +94,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
       </p>
 
       {session?.user.id === post.creator.id && pathName === "/profile" && (
-        <div className='mt-5 flex-center gap-4 border-t border-gray-100 dark:border-gray-800 pt-3'>
+        <div className='mt-5 flex gap-5 items-start justify-start border-t border-gray-100 dark:border-gray-800 pt-3'>
           <p
             className=' text-sm green_gradient cursor-pointer'
             onClick={handleEdit}

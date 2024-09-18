@@ -51,16 +51,16 @@ export default function PasswordInformation(){
 
         <div className="flex flex-col space-y-1">
             <label htmlFor="confirm_password" className="text-sm font-semibold">Confirm Password</label>
-            <input required placeholder='********' name="confirm_password" type="password" id="confirm_password" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[300px] disabled:bg-white" />
+            <input required placeholder='********' name="confirm_password" type="password" id="confirm_password" className="text-gray-500 dark:text-white dark:bg-white/10 outline-0 focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-700 font-semibold  p-2 rounded-md w-[280px] disabled:bg-white" />
         </div> 
         
         <div id='warning'>
-            <h1 className='text- black dark:text-white font-semibold'>Password requirements:</h1>
-            <p className={`text-gray-600 dark:text-gray-400`}>Ensure that these requirements are met:</p>
+            <h1 className='text-[13px] xl:text-md black dark:text-white font-semibold'>Password requirements:</h1>
+            <p className={`text-[13px] xl:text-md text-gray-600 dark:text-gray-400`}>Ensure that these requirements are met:</p>
                 <div className={`flex items-start justify-start flex-col pl-5`}>
-                    <p className={`text-[13px] leading-[1rem] text-gray-600 dark:text-gray-400`}>At least 8 characters (and up to 100 characters)</p>
-                    <p className={`text-[13px] leading-[1rem] text-gray-600 dark:text-gray-400`}>At least one uppercase character</p>
-                    <p className={`text-[13px] leading-[1rem] text-gray-600 dark:text-gray-400`}>Inclusion of at least one special character, e.g., ! @ # ?</p>
+                    <p className={`text-[12px] xl:text-[13px] leading-[1rem] text-gray-600 dark:text-gray-400`}>At least 8 characters (and up to 100 characters)</p>
+                    <p className={`text-[12px] xl:text-[13px] leading-[1rem] text-gray-600 dark:text-gray-400`}>At least one uppercase character</p>
+                    <p className={`text-[12px] xl:text-[13px] leading-[1rem] text-gray-600 dark:text-gray-400`}>Inclusion of at least one special character, e.g., ! @ # ?</p>
                 </div>
 
         </div>
