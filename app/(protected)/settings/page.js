@@ -22,8 +22,8 @@ return (
                 </div>
 
                  
-                <div id='TwoFactor'>
-                    <form className='w-full max-w-2xl flex flex-col gap-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/20 dark:bg-black/20  shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5'>
+                <div className={`pb-10`} id='TwoFactor'>
+                    <form className='pb-5 w-full max-w-2xl flex flex-col gap-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/20 dark:bg-black/20  shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5'>
                         <h1 className='text-2xl font-bold leading-[1.15] text-black dark:text-white sm:text-xl text-left'>General Infromation</h1>
                         <FaSwitch />
                     </form>

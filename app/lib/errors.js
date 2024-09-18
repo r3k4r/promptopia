@@ -2,6 +2,7 @@ export const ResultCode = {
   InvalidCredentials: 'INVALID_CREDENTIALS',
   InvalidSubmission: 'INVALID_SUBMISSION',
   UserAlreadyExists: 'USER_ALREADY_EXISTS',
+  UserAlreadyExistSettings: 'USER_ALREADY_EXISTS_SETTINGS',
   UserDoesNotExist: 'USER_DOES_NOT_EXIST',
   UnknownError: 'UNKNOWN_ERROR',
   UserCreated: 'USER_CREATED',
@@ -10,6 +11,8 @@ export const ResultCode = {
   Verification : 'CONFIRMATION_EMAIL_SENT',
   PasswordReseted : 'PASSWORD_RESETED',
   WrongCurrent : "WRONG_CURRENT",
+  MissingFields : "MISSING_FIELDS",
+  InfromationUpdated: "INFROMATION_UPDATED",
   TokenExisting : "TOKEN_EXISTING",
   ExpiredToken: "EXPIRED_TOKEN",
   EmailVerified: "EMAIL_VERIFIED",
@@ -26,6 +29,10 @@ export const getMessageFromCode = (resultCode) => {
         return 'Invalid credentials!'
       case ResultCode.InvalidSubmission:
         return 'Invalid submission, please try again!'
+      case ResultCode.UserAlreadyExists:
+        return 'User already exists, please log in!'
+      case ResultCode.UserAlreadyExistSettings:
+        return 'Email already exists!'
       case ResultCode.UserAlreadyExists:
         return 'User already exists, please log in!'
       case ResultCode.UserDoesNotExist:
@@ -50,6 +57,10 @@ export const getMessageFromCode = (resultCode) => {
         return 'Password Updated!'
       case ResultCode.PasswordsDontMatch:
         return 'Password Dont Match!'
+      case ResultCode.MissingFields:
+        return 'Missing required fields!'
+      case ResultCode.InfromationUpdated:
+        return 'Informations Updated!'
       case ResultCode.WrongCurrent:
         return 'Current Password is Wrong!'
       case ResultCode.InvalidCode:
