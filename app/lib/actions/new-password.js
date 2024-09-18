@@ -92,7 +92,9 @@ export const resetPasswordForSettings = async(prevstate, formData) => {
     const confirmPassword = formData.get("confirm_password")
     const email = formData.get("email")
 
-    
+    if(currentPassword === '' || newPassword === '' || confirmPassword === ''){
+        return {type: 'error', resultCode: ResultCode.MissingFields}
+    }
 
         const user = await getUserByEmail(email)
         const usersPassword = await bcrypt.compare(currentPassword, user.password)

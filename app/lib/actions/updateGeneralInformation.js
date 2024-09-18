@@ -5,6 +5,7 @@ import { prisma } from "../db"
 import { ResultCode } from "../errors"
 import { generateVerificationToken } from './tokens';
 import { sendVerficationEmail } from '../mail';
+import { revalidatePath } from "next/cache";
 
 
 export const GeneralInformationUpdate = async (prevstate, formData) => {
@@ -26,12 +27,6 @@ export const GeneralInformationUpdate = async (prevstate, formData) => {
         return {type: 'error', resultCode: ResultCode.MissingFields}
     }
 
-    if(existingUser){
-        return{
-            type:'error',
-            resultCode: ResultCode.UserAlreadyExists, 
-        }
-    }
     if(email === currentEmail){
         const user = await prisma.user.update({
             where: {
@@ -51,6 +46,14 @@ export const GeneralInformationUpdate = async (prevstate, formData) => {
     }
 
     if(email !== currentEmail){
+        
+        if(existingUser){
+            return{
+                type:'error',
+                resultCode: ResultCode.UserAlreadyExists, 
+            }
+        }
+
         await prisma.user.update({
             where : {
                 id : data.user.id
@@ -73,5 +76,7 @@ export const GeneralInformationUpdate = async (prevstate, formData) => {
         }
     
     }
+
+    revalidatePath('/profile', '/', '/settings')
     
 }
