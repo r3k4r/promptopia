@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useFormState, useFormStatus } from 'react-dom'
 import { getMessageFromCode } from "@/app/lib/errors"
 import { toast } from 'react-hot-toast';
@@ -24,6 +24,7 @@ export default function GenaralInformation(){
             const errorMessage = getMessageFromCode(result.resultCode);
             setError(errorMessage);
             toast.error(errorMessage);
+
           }
           else {
             toast.success(getMessageFromCode(result.resultCode))
@@ -33,7 +34,7 @@ export default function GenaralInformation(){
       }, [result])
 
     return(
-    <form action={dispatch} className='mt-10 w-full max-w-2xl flex flex-col gap-7 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/20 dark:bg-black/20  shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5'>
+    <form  action={dispatch} className='mt-10 w-full max-w-2xl flex flex-col gap-7 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/20 dark:bg-black/20  shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5'>
                         
         <h1 className='text-2xl font-bold leading-[1.15] text-black dark:text-white sm:text-xl text-left'>General Infromation</h1>
 

@@ -26,6 +26,6 @@ export async function ForUpdatingPrompt(prevstate, formData){
     }
 
     revalidatePath('/', '/profile');
-    redirect('/');
+    redirect('/profile')
 
 };

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useFormState, useFormStatus } from 'react-dom'
 import { getMessageFromCode } from "@/app/lib/errors"
 import { toast } from 'react-hot-toast';
@@ -11,6 +11,7 @@ export default function PasswordInformation(){
     const [error, setError] = useState('');
     const [result, dispatch] = useFormState(resetPasswordForSettings, undefined)
     const { pending } = useFormStatus()
+    const formRef = useRef(null);
     const {data : session} = useSession()
 
     useEffect(() => {
@@ -23,6 +24,10 @@ export default function PasswordInformation(){
             const errorMessage = getMessageFromCode(result.resultCode);
             setError(errorMessage);
             toast.error(errorMessage);
+
+            if (formRef.current) {
+              formRef.current.reset();
+            }
           }else {
             toast.success(getMessageFromCode(result.resultCode))
             setError('');
@@ -33,7 +38,7 @@ export default function PasswordInformation(){
 
     
     return(
-    <form action={dispatch} className='xl:mt-10 w-full h-fit max-w-2xl flex flex-col gap-7 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/20 dark:bg-black/20  shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5'>
+    <form ref={formRef} action={dispatch} className='xl:mt-10 w-full h-fit max-w-2xl flex flex-col gap-7 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/20 dark:bg-black/20  shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5'>
                     
         <h1 className='text-2xl font-bold leading-[1.15] text-black dark:text-white sm:text-xl text-left'>Password Infromation</h1>
 
