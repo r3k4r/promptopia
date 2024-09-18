@@ -44,16 +44,17 @@ export default function FaSwitch() {
   }, [isTwoFactor, userID]);
 
   return (
-    <div className="flex items-start justify-between">
-      <div>
-        <p className="font-semibold">Two Factor Authentication</p>
+    <div className="flex items-center justify-between gap-8 md:gap-0 p-2 border border-gray-200 dark:border-gray-700 rounded-lg dark:bg-white/10">
+      <div >
+        <p className="text-[12px] md:text-[15px] font-semibold">Two Factor Authentication</p>
+        <p className="text-[11px] md:text-[12px] leading-[1rem] text-gray-600 dark:text-gray-400">Enable two factor authentication for your account</p>
       </div>
 
       <div>
         <Switch
           checked={isTwoFactor}
           onChange={setIsTwoFactor}
-          className={`${isTwoFactor ? 'bg-blue-600' : 'bg-blue-300'}
+          className={`${isTwoFactor ? 'bg-blue-600' : 'bg-'}
           relative inline-flex h-[26px] w-[50px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
         >
           <span

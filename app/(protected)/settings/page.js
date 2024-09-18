@@ -15,7 +15,7 @@ return (
             <span className='blue_gradient'>Settings</span>
         </h1>
         
-        <div className={`flex xl:flex-row flex-col items-start justify-start   gap-5`}>
+        <div className={`w-full flex xl:flex-row flex-col items-start justify-start   gap-5`}>
            <div className='flex flex-col gap-5'>
                 <div id='generalInformation'>
                     <GenaralInformation />
