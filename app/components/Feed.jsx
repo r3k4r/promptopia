@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
@@ -20,9 +19,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
-  // Search states
   const [searchText, setSearchText] = useState("");
-  const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
@@ -42,32 +39,36 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
-  const filterPrompts = (searchtext) => {
-    const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
+  const filterPrompts = (searchText) => {
+    const trimmedText = searchText.trim().toLowerCase(); // Normalize the search text to lowercase
     return allPosts.filter(
       (item) =>
-        regex.test(item.creator.name) ||
-        regex.test(item.tag) ||
-        regex.test(item.prompt)
+        item?.creator?.name?.toLowerCase().includes(trimmedText) ||
+        item?.tags?.toLowerCase().includes(trimmedText) ||
+        item?.prompt?.toLowerCase().includes(trimmedText)
     );
   };
+  
 
   const handleSearchChange = (e) => {
-    clearTimeout(searchTimeout);
-    setSearchText(e.target.value);
+    const text = e.target.value;
+    setSearchText(text);
 
-    // debounce method
-    setSearchTimeout(
-      setTimeout(() => {
-        const searchResult = filterPrompts(e.target.value);
-        setSearchedResults(searchResult);
-      }, 500)
-    );
+    if (text.trim() === "") {
+      setSearchedResults([]);
+      return;
+    }
+
+    setTimeout(() => {
+      const searchResult = filterPrompts(text);
+      setSearchedResults(searchResult);
+    }, 500);
   };
 
   const handleTagClick = (tagName) => {
     setSearchText(tagName);
 
+    // Directly filter using the tagName
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
@@ -80,7 +81,7 @@ const Feed = () => {
           placeholder='Search for a tag or a username'
           value={searchText}
           onChange={handleSearchChange}
-          className='block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 py-2.5  pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 peer'
+          className='block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 py-2.5 pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 peer'
         />
       </form>
 
