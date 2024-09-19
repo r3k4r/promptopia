@@ -54,7 +54,7 @@ export default function FaSwitch() {
         <Switch
           checked={isTwoFactor}
           onChange={setIsTwoFactor}
-          className={`${isTwoFactor ? 'bg-blue-600' : 'bg-'}
+          className={`${isTwoFactor ? 'bg-blue-600' : 'bg-blue-300'}
           relative inline-flex h-[26px] w-[50px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
         >
           <span
