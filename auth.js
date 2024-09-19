@@ -7,7 +7,16 @@ import { getTwoFactorConfirmationByUserId } from "./data/twoFactor-confirmation/
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  trustHost: true,
+  cookies : {
+    sessionToken : {
+      name: `next-auth.session-token`,
+    },
+    options : {
+      httpOnly : true,
+      secure : process.env.NODE_ENV === "production",
+      sameSite : "lax",
+    }
+  },
   pages :{
     signIn : "auth/login",
     error : "auth/error",
