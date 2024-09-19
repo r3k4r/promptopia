@@ -11,8 +11,8 @@ import Link from "next/link";
 
 export const DesctopToggle = ({session}) => {
     const [image, setImage] = useState(false)
-    const firstLetter = session.user.FirstName.charAt(0).toUpperCase()
-    const secondLetter = session.user.LastName.charAt(0).toUpperCase()
+    const firstLetter = session?.user?.FirstName.charAt(0).toUpperCase()
+    const secondLetter = session?.user?.LastName.charAt(0).toUpperCase()
     
 
     useEffect(() => {
@@ -86,8 +86,8 @@ export const DesctopToggle = ({session}) => {
 
 export const MobileToggle = ({session})=>{
   const [image, setImage] = useState(false)
-  const firstLetter = session.user.FirstName.charAt(0).toUpperCase()
-  const secondLetter = session.user.LastName.charAt(0).toUpperCase()
+  const firstLetter = session?.user?.FirstName.charAt(0).toUpperCase()
+  const secondLetter = session?.user?.LastName.charAt(0).toUpperCase()
 
    useEffect(() => {
     if(session?.user?.image){

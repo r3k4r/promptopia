@@ -63,11 +63,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = token.sub;
       }
 
-        session.user.emailVerified = token.verify;
-        session.user.FirstName = token.FirstName;
-        session.user.LastName = token.LastName;
-        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
-        session.user.email  =token.email
+        session.user.emailVerified = token?.verify;
+        session.user.FirstName = token?.FirstName;
+        session.user.LastName = token?.LastName;
+        session.user.isTwoFactorEnabled = token?.isTwoFactorEnabled;
+        session.user.email  =token?.email
 
       return session;
     },
@@ -77,11 +77,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
        const verifiedEmail = await getUserById(token.sub);
       if (!verifiedEmail) return token;
 
-      token.verify = verifiedEmail.emailVerified;
-      token.FirstName = verifiedEmail.FirstName;
-      token.LastName = verifiedEmail.LastName;
-      token.isTwoFactorEnabled = verifiedEmail.isTwoFactorEnabled
-      token.email = verifiedEmail.email
+      token.verify = verifiedEmail?.emailVerified;
+      token.FirstName = verifiedEmail?.FirstName;
+      token.LastName = verifiedEmail?.LastName;
+      token.isTwoFactorEnabled = verifiedEmail?.isTwoFactorEnabled
+      token.email = verifiedEmail?.email
 
       return token;
     },
