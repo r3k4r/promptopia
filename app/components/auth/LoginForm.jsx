@@ -17,26 +17,25 @@ const LoginForm = () => {
     const router = useRouter()
     const [twoFactor, setTwoFactor] = useState(false)
     const [result, dispatch] = useFormState(login, undefined)
-    console.log(result)
     const { pending } = useFormStatus()
 
     useEffect(() => {
         if (result) {
-          if (result.type === 'error') {
-            const errorMessage = getMessageFromCode(result.resultCode);
+          if (result?.type === 'error') {
+            const errorMessage = getMessageFromCode(result?.resultCode);
             setError(errorMessage);
             toast.error(errorMessage);
-          }else if(result.twoFactor === "seccess" && result.type === 'verification'){
+          }else if(result?.twoFactor === "seccess" && result?.type === 'verification'){
             setTwoFactor(true)
-            const errorMessage = getMessageFromCode(result.resultCode);
+            const errorMessage = getMessageFromCode(result?.resultCode);
             setError(errorMessage);
             toast.error(errorMessage);
-        }else if(result.type === 'verification'){
-            const errorMessage = getMessageFromCode(result.resultCode);
+        }else if(result?.type === 'verification'){
+            const errorMessage = getMessageFromCode(result?.resultCode);
             setError(errorMessage);
             toast.error(errorMessage);
           }else {
-            toast.success(getMessageFromCode(result.resultCode))
+            toast.success(getMessageFromCode(result?.resultCode))
             router.push('/');
             setError('');
           }
@@ -74,9 +73,9 @@ const LoginForm = () => {
     }
 
     {error && (
-        <div className={`p-3 ${result.type === 'verification' ? 'bg-teal-100' : 'bg-red-200'} rounded-md `}>
-          <p className={`${result.type === 'verification' ? 'text-green-600' : 'text-red-600'}  font-semibold text-sm flex items-center justify-start gap-3`}>
-            {result.type === 'verification' ? 
+        <div className={`p-3 ${result?.type === 'verification' ? 'bg-teal-100' : 'bg-red-200'} rounded-md `}>
+          <p className={`${result?.type === 'verification' ? 'text-green-600' : 'text-red-600'}  font-semibold text-sm flex items-center justify-start gap-3`}>
+            {result?.type === 'verification' ? 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
